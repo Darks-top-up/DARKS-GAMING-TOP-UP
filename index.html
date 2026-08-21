@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Enforces Desktop View scaling across all mobile devices -->
   <meta name="viewport" content="width=1400, initial-scale=0.3">
   <title>DARK - Digital Entertainment & Gaming Hub</title>
   <style>
@@ -18,7 +17,7 @@
       background-color: #03060a;
       color: #e6edf3;
       overflow-x: auto;
-      min-width: 1400px; /* Lock minimum width for desktop layout */
+      min-width: 1400px;
     }
 
     /* NAVIGATION BAR */
@@ -92,7 +91,6 @@
       position: relative;
       padding: 110px 20px 130px;
       text-align: center;
-      /* Layered cyan & emerald smoke gradient overlay matching image */
       background: 
         radial-gradient(ellipse 65% 55% at 82% 30%, rgba(0, 200, 150, 0.18) 0%, transparent 60%),
         radial-gradient(ellipse 55% 45% at 18% 25%, rgba(0, 150, 255, 0.15) 0%, transparent 60%),
@@ -182,7 +180,6 @@
       gap: 25px;
     }
 
-    /* Glow outline category cards */
     .cat-card {
       background: rgba(8, 14, 22, 0.75);
       backdrop-filter: blur(8px);
@@ -237,7 +234,7 @@
       line-height: 1.5;
     }
 
-    /* CAROUSEL / SLIDER SECTION */
+    /* SLIDER & CAROUSEL SETUP */
     .slider-header {
       display: flex;
       justify-content: space-between;
@@ -286,10 +283,73 @@
       gap: 25px;
     }
 
-    /* GAME & ITEM CARDS */
+    /* FEATURED MOVIES SLIDER CARDS */
+    .movie-card {
+      min-width: 320px;
+      max-width: 320px;
+      background: rgba(13, 19, 29, 0.9);
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 18px;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .movie-card:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+
+    .movie-card h4 {
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .movie-card p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .movie-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-movie {
+      flex: 1;
+      padding: 10px 0;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #38bdf8;
+      transition: 0.2s;
+    }
+
+    .btn-movie:hover {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+
+    /* GAMING SLIDER CARDS */
     .game-card {
-      min-width: 240px;
-      max-width: 240px;
+      min-width: 250px;
+      max-width: 250px;
       background: rgba(13, 19, 29, 0.9);
       border: 1px solid #1e293b;
       border-radius: 14px;
@@ -307,7 +367,7 @@
 
     .game-card img {
       width: 100%;
-      height: 140px;
+      height: 150px;
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 14px;
@@ -324,13 +384,6 @@
     .game-card .subtitle {
       font-size: 13px;
       color: #64748b;
-      margin-bottom: 14px;
-    }
-
-    .game-card .price {
-      font-size: 18px;
-      font-weight: 800;
-      color: #38bdf8;
       margin-bottom: 14px;
     }
 
@@ -353,115 +406,7 @@
       border-color: #38bdf8;
     }
 
-    /* FEATURED MOVIES SECTION */
-    .movie-card {
-      min-width: 280px;
-      max-width: 280px;
-      background: rgba(13, 19, 29, 0.9);
-      border: 1px solid #1e293b;
-      border-radius: 14px;
-      padding: 16px;
-      transition: all 0.3s;
-      flex-shrink: 0;
-    }
-
-    .movie-card:hover {
-      border-color: #38bdf8;
-      transform: translateY(-5px);
-    }
-
-    .movie-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 12px;
-    }
-
-    .movie-card h4 {
-      font-size: 16px;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .movie-card p {
-      font-size: 12px;
-      color: #64748b;
-      line-height: 1.4;
-      margin-bottom: 14px;
-    }
-
-    .movie-actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn-movie {
-      flex: 1;
-      padding: 8px 0;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid #334155;
-      background: #1e293b;
-      color: #38bdf8;
-    }
-
-    .btn-movie:hover {
-      background: #0284c7;
-      color: #ffffff;
-    }
-
-    /* GIFT CARDS GRID */
-    .gift-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .gift-card-item {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .gift-card-item.roblox-box {
-      background: #0f172a;
-    }
-
-    .gift-card-item.blue-box {
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-    }
-
-    .gift-card-item.green-box {
-      background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
-    }
-
-    .gift-card-item.apple-box {
-      background: linear-gradient(135deg, #15803d 0%, #4ade80 100%);
-    }
-
-    .gift-card-amount {
-      font-size: 32px;
-      font-weight: 900;
-      color: #ffffff;
-      margin: 15px 0;
-    }
-
-    .gift-select {
-      width: 100%;
-      padding: 8px;
-      background: #090d16;
-      border: 1px solid #334155;
-      color: #ffffff;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
-
-    /* CONTACT / PAYMENT BANNER */
+    /* PAYMENT / CONTACT BANNER */
     .payment-banner {
       background: rgba(11, 19, 32, 0.85);
       backdrop-filter: blur(8px);
@@ -495,7 +440,7 @@
       color: #38bdf8;
     }
 
-    /* FLOATING WHATSAPP & CHAT WIDGET */
+    /* FLOATING WHATSAPP CHAT */
     .floating-chat {
       position: fixed;
       bottom: 25px;
@@ -519,7 +464,7 @@
     }
 
     .chat-btn {
-      background: #0284c7;
+      background: #25d366;
       color: white;
       padding: 12px 22px;
       border-radius: 30px;
@@ -528,15 +473,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 4px 18px rgba(2, 132, 199, 0.4);
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
       cursor: pointer;
       border: none;
       text-decoration: none;
-    }
-
-    .wa-btn {
-      background: #25d366;
-      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
     }
 
     /* MODAL POPUP */
@@ -683,7 +623,7 @@
           <h3>Movies & TV</h3>
           <p>Streaming account rentals, weekly and monthly options</p>
         </div>
-        <button class="btn-card" onclick="scrollToSection('movies')">Large Product</button>
+        <button class="btn-card" onclick="scrollToSection('movies-slider-wrapper')">Large Product</button>
       </div>
 
       <div class="cat-card blue">
@@ -701,7 +641,7 @@
           <h3>Gift Cards</h3>
           <p>Roblox, Xbox, Steam, Apple, etc.</p>
         </div>
-        <button class="btn-card" onclick="scrollToSection('giftcards')">View Option</button>
+        <button class="btn-card" onclick="scrollToSection('gaming')">View Option</button>
       </div>
 
       <div class="cat-card green">
@@ -715,12 +655,16 @@
     </div>
   </div>
 
-  <!-- FEATURED MOVIES SECTION -->
+  <!-- MOVIES SECTION (SLIDER CAROUSEL) -->
   <div class="section-container" id="deals">
     <div class="slider-header">
       <h2 class="section-title" style="margin:0; text-align:left;">🔥 Featured Movies</h2>
+      <div class="slider-controls">
+        <button class="slider-btn" onclick="slide('movies-slider-wrapper', -350)">❮</button>
+        <button class="slider-btn" onclick="slide('movies-slider-wrapper', 350)">❯</button>
+      </div>
     </div>
-    <div class="cards-slider-wrapper">
+    <div class="cards-slider-wrapper" id="movies-slider-wrapper">
       <div class="cards-slider">
         <div class="movie-card">
           <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG Movie">
@@ -728,7 +672,7 @@
           <p>Streaming account rentals, weekly smooth streaming, options swift content/custom 4k ultra...</p>
           <div class="movie-actions">
             <button class="btn-movie">Watch Trailer</button>
-            <button class="btn-movie">Get Subscription</button>
+            <button class="btn-movie" onclick="openOrderModal('PUBG Movie Account', 'Streaming Access', 'Contact')">Get Subscription</button>
           </div>
         </div>
 
@@ -738,7 +682,7 @@
           <p>Watch HD streams on the central page. Instant access guaranteed with premium options available...</p>
           <div class="movie-actions">
             <button class="btn-movie">Watch Trailer</button>
-            <button class="btn-movie">Get Subscription</button>
+            <button class="btn-movie" onclick="openOrderModal('Pace For Media', 'Streaming Subscription', 'Contact')">Get Subscription</button>
           </div>
         </div>
 
@@ -748,13 +692,24 @@
           <p>Ultimate blockbusters ready for instant playback across your streaming devices...</p>
           <div class="movie-actions">
             <button class="btn-movie">Watch Trailer</button>
+            <button class="btn-movie" onclick="openOrderModal('Movie Master', 'Full Access Pass', 'Contact')">Get Subscription</button>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=600&auto=format&fit=crop" alt="Cinema Unlimited">
+          <h4>Cinema Unlimited</h4>
+          <p>Unlimited high-definition streaming for sports, series, and live entertainment channels...</p>
+          <div class="movie-actions">
+            <button class="btn-movie">Watch Trailer</button>
+            <button class="btn-movie" onclick="openOrderModal('Cinema Unlimited', 'Monthly Access', 'Contact')">Get Subscription</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- GAMING SECTION -->
+  <!-- GAMING SECTION (SLIDER CAROUSEL) -->
   <div class="section-container" id="gaming">
     <div class="slider-header">
       <h2 class="section-title" style="margin:0; text-align:left;">🎮 Gaming Section</h2>
@@ -771,74 +726,34 @@
           <div class="subtitle">UC Top-Up</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', 'UC Top-Up', 'Contact')">View Packages</button>
         </div>
+
         <div class="game-card">
           <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="Fortnite">
           <div class="title">Fortnite</div>
           <div class="subtitle">V-Bucks</div>
           <button class="btn-card" onclick="openOrderModal('Fortnite', 'V-Bucks', 'Contact')">View Packages</button>
         </div>
+
         <div class="game-card">
           <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox">
           <div class="title">Roblox</div>
           <div class="subtitle">Robux Instant</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', 'Robux', 'Contact')">View Packages</button>
         </div>
+
         <div class="game-card">
           <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600&auto=format&fit=crop" alt="Xbox">
           <div class="title">Xbox</div>
           <div class="subtitle">Game Pass</div>
           <button class="btn-card" onclick="openOrderModal('Xbox', 'Game Pass', 'Contact')">View Packages</button>
         </div>
+
         <div class="game-card">
           <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Steam">
           <div class="title">Steam</div>
           <div class="subtitle">Wallet Codes</div>
           <button class="btn-card" onclick="openOrderModal('Steam', 'Wallet Code', 'Contact')">View Packages</button>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- GIFT CARDS SECTION -->
-  <div class="section-container">
-    <div class="slider-header">
-      <h2 class="section-title" style="margin:0; text-align:left;">🎁 Gift Cards</h2>
-    </div>
-    <div class="gift-cards-grid">
-      <div class="gift-card-item roblox-box">
-        <h3>ROBLOX</h3>
-        <div class="gift-card-amount">$1100</div>
-        <select class="gift-select">
-          <option>Select</option>
-        </select>
-        <button class="btn-card" onclick="openOrderModal('Roblox Gift Card', '$1100 Value', '$1100')">Add to Cart</button>
-      </div>
-
-      <div class="gift-card-item blue-box">
-        <h3>STEAM</h3>
-        <div class="gift-card-amount">$60</div>
-        <select class="gift-select">
-          <option>Select</option>
-        </select>
-        <button class="btn-card" onclick="openOrderModal('Steam Gift Card', '$60 Value', '$60')">Add to Cart</button>
-      </div>
-
-      <div class="gift-card-item green-box">
-        <h3>XBOX</h3>
-        <div class="gift-card-amount">$200</div>
-        <select class="gift-select">
-          <option>Select</option>
-        </select>
-        <button class="btn-card" onclick="openOrderModal('Xbox Gift Card', '$200 Value', '$200')">Add to Cart</button>
-      </div>
-
-      <div class="gift-card-item apple-box">
-        <h3>APPLE</h3>
-        <div class="gift-card-amount">$400</div>
-        <select class="gift-select">
-          <option>Select</option>
-        </select>
-        <button class="btn-card" onclick="openOrderModal('Apple Gift Card', '$400 Value', '$400')">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -859,10 +774,10 @@
     </div>
   </div>
 
-  <!-- FLOATING CHAT / WHATSAPP BUTTONS -->
+  <!-- FLOATING CHAT BUTTON -->
   <div class="floating-chat">
     <div class="chat-pill">Chat with Us 💬</div>
-    <a href="https://wa.me/13436555995" target="_blank" class="chat-btn wa-btn">
+    <a href="https://wa.me/13436555995" target="_blank" class="chat-btn">
       WhatsApp Support
     </a>
   </div>
@@ -904,7 +819,10 @@
     }
 
     function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     function openOrderModal(game, pkg, price) {
@@ -926,7 +844,7 @@
       const playerInfo = document.getElementById('playerInfo').value.trim();
 
       if (!playerInfo) {
-        alert('Please enter your Gaming ID or Username!');
+        alert('Please enter your ID or Username!');
         return;
       }
 
