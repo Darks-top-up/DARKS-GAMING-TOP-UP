@@ -13,11 +13,59 @@
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
+    /* Apply to the outer wrapper or body tag */
     body {
-      background-color: #05070a;
-      color: #e6edf3;
+      margin: 0;
+      background-color: #030708; /* Dark base tone */
+      
+      /* Layered cyan and emerald ambient glow matching the image */
+      background-image: 
+        radial-gradient(ellipse 60% 50% at 80% 25%, rgba(0, 200, 150, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 20%, rgba(0, 150, 255, 0.12) 0%, transparent 60%),
+        url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1600&auto=format&fit=crop'); /* Dynamic smoke overlay */
+      
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #ffffff;
       overflow-x: auto;
       min-width: 1400px; /* Lock minimum width for desktop layout */
+    }
+
+    /* Glowing outline effect for the main category cards */
+    .category-card {
+      background: rgba(10, 15, 22, 0.7);
+      border: 1px solid rgba(0, 180, 255, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 180, 255, 0.15);
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      padding: 30px 25px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 250px;
+    }
+
+    .category-card:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+      transform: translateY(-5px);
+    }
+
+    /* Green highlight glow for selected/featured cards (like Digital Services) */
+    .category-card.accent-green {
+      border-color: rgba(0, 230, 150, 0.6);
+      box-shadow: 0 0 18px rgba(0, 230, 150, 0.25);
+    }
+
+    .category-card.accent-green:hover {
+      border-color: #4ade80;
+      box-shadow: 0 0 25px rgba(74, 222, 128, 0.3);
+      transform: translateY(-5px);
     }
 
     /* NAVIGATION BAR */
@@ -91,7 +139,7 @@
       position: relative;
       padding: 110px 20px 130px;
       text-align: center;
-      background: radial-gradient(circle at center, rgba(14, 116, 144, 0.18) 0%, rgba(5, 7, 10, 1) 75%);
+      background: radial-gradient(circle at center, rgba(14, 116, 144, 0.18) 0%, rgba(5, 7, 10, 0.85) 75%);
       border-bottom: 1px solid #161e2e;
       overflow: hidden;
     }
@@ -171,55 +219,20 @@
       gap: 25px;
     }
 
-    .cat-card {
-      background: #0b0f17;
-      border-radius: 14px;
-      padding: 30px 25px;
-      text-align: center;
-      transition: all 0.3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 250px;
-    }
-
-    .cat-card.blue {
-      border: 1px solid rgba(14, 165, 233, 0.3);
-      box-shadow: 0 0 15px rgba(14, 165, 233, 0.05);
-    }
-
-    .cat-card.blue:hover {
-      border-color: #38bdf8;
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
-      transform: translateY(-5px);
-    }
-
-    .cat-card.green {
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      box-shadow: 0 0 15px rgba(34, 197, 94, 0.05);
-    }
-
-    .cat-card.green:hover {
-      border-color: #4ade80;
-      box-shadow: 0 0 25px rgba(74, 222, 128, 0.3);
-      transform: translateY(-5px);
-    }
-
     .cat-icon {
       font-size: 40px;
       margin-bottom: 12px;
     }
 
-    .cat-card h3 {
+    .category-card h3 {
       font-size: 20px;
       margin-bottom: 10px;
       color: #f8fafc;
     }
 
-    .cat-card p {
+    .category-card p {
       font-size: 14px;
-      color: #64748b;
+      color: #94a3b8;
       margin-bottom: 24px;
       line-height: 1.5;
     }
@@ -277,7 +290,8 @@
     .game-card {
       min-width: 240px;
       max-width: 240px;
-      background: #0d131d;
+      background: rgba(13, 19, 29, 0.85);
+      backdrop-filter: blur(6px);
       border: 1px solid #1e293b;
       border-radius: 14px;
       padding: 18px;
@@ -342,7 +356,8 @@
 
     /* CONTACT / PAYMENT FLOATING BANNER */
     .payment-banner {
-      background: linear-gradient(90deg, #0b1320 0%, #111c2e 100%);
+      background: rgba(11, 19, 32, 0.85);
+      backdrop-filter: blur(8px);
       border: 1px solid #1e293b;
       border-radius: 14px;
       padding: 28px;
@@ -542,7 +557,7 @@
   <div class="section-container">
     <h2 class="section-title">Main Categories</h2>
     <div class="categories-grid">
-      <div class="cat-card blue">
+      <div class="category-card">
         <div>
           <div class="cat-icon">🎮</div>
           <h3>Gaming UC & CP</h3>
@@ -551,7 +566,7 @@
         <button class="btn-card" onclick="scrollToSection('gaming')">View Packages</button>
       </div>
 
-      <div class="cat-card blue">
+      <div class="category-card">
         <div>
           <div class="cat-icon">🧱</div>
           <h3>Roblox</h3>
@@ -560,7 +575,7 @@
         <button class="btn-card" onclick="scrollToSection('roblox')">View Packages</button>
       </div>
 
-      <div class="cat-card blue" id="giftcards">
+      <div class="category-card" id="giftcards">
         <div>
           <div class="cat-icon">🎁</div>
           <h3>Gift Cards</h3>
@@ -569,7 +584,7 @@
         <button class="btn-card" onclick="scrollToSection('giftcards')">View Packages</button>
       </div>
 
-      <div class="cat-card green">
+      <div class="category-card accent-green">
         <div>
           <div class="cat-icon">💳</div>
           <h3>Digital Services</h3>
@@ -608,42 +623,42 @@
     <div class="cards-slider-wrapper" id="pubg-slider">
       <div class="cards-slider">
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71R%2Bq3iWlsL._AC_SL1500_.jpg" alt="PUBG UC Cover">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG UC Cover">
           <div class="title">60 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '60 UC', '$300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71R%2Bq3iWlsL._AC_SL1500_.jpg" alt="PUBG UC Cover">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG UC Cover">
           <div class="title">325 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '325 UC', '$1,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71R%2Bq3iWlsL._AC_SL1500_.jpg" alt="PUBG UC Cover">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG UC Cover">
           <div class="title">660 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$2,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '660 UC', '$2,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71R%2Bq3iWlsL._AC_SL1500_.jpg" alt="PUBG UC Cover">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG UC Cover">
           <div class="title">1,800 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$5,500 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '1,800 UC', '$5,500 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71R%2Bq3iWlsL._AC_SL1500_.jpg" alt="PUBG UC Cover">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG UC Cover">
           <div class="title">3,850 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$11,400 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '3,850 UC', '$11,400 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71R%2Bq3iWlsL._AC_SL1500_.jpg" alt="PUBG UC Cover">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG UC Cover">
           <div class="title">8,100 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$21,500 GYD</div>
@@ -665,42 +680,42 @@
     <div class="cards-slider-wrapper" id="cod-slider">
       <div class="cards-slider">
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/81xUeJbE%2B1L._AC_SL1500_.jpg" alt="COD CP Cover">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="COD CP Cover">
           <div class="title">80 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$400 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '80 CP', '$400 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/81xUeJbE%2B1L._AC_SL1500_.jpg" alt="COD CP Cover">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="COD CP Cover">
           <div class="title">420 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '420 CP', '$1,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/81xUeJbE%2B1L._AC_SL1500_.jpg" alt="COD CP Cover">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="COD CP Cover">
           <div class="title">880 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$2,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '880 CP', '$2,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/81xUeJbE%2B1L._AC_SL1500_.jpg" alt="COD CP Cover">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="COD CP Cover">
           <div class="title">2,400 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$5,500 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '2,400 CP', '$5,500 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/81xUeJbE%2B1L._AC_SL1500_.jpg" alt="COD CP Cover">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="COD CP Cover">
           <div class="title">5,000 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$11,000 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '5,000 CP', '$11,000 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/81xUeJbE%2B1L._AC_SL1500_.jpg" alt="COD CP Cover">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="COD CP Cover">
           <div class="title">10,800 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$21,500 GYD</div>
@@ -722,35 +737,35 @@
     <div class="cards-slider-wrapper" id="ff-slider">
       <div class="cards-slider">
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71YvE-A%2BPvL._AC_SL1500_.jpg" alt="Free Fire Cover">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="Free Fire Cover">
           <div class="title">100 Diamonds</div>
           <div class="subtitle">Free Fire</div>
           <div class="price">$300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Free Fire', '100 Diamonds', '$300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71YvE-A%2BPvL._AC_SL1500_.jpg" alt="Free Fire Cover">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="Free Fire Cover">
           <div class="title">210 Diamonds</div>
           <div class="subtitle">Free Fire</div>
           <div class="price">$600 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Free Fire', '210 Diamonds', '$600 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71YvE-A%2BPvL._AC_SL1500_.jpg" alt="Free Fire Cover">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="Free Fire Cover">
           <div class="title">530 Diamonds</div>
           <div class="subtitle">Free Fire</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Free Fire', '530 Diamonds', '$1,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71YvE-A%2BPvL._AC_SL1500_.jpg" alt="Free Fire Cover">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="Free Fire Cover">
           <div class="title">1,080 Diamonds</div>
           <div class="subtitle">Free Fire</div>
           <div class="price">$2,500 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Free Fire', '1,080 Diamonds', '$2,500 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/71YvE-A%2BPvL._AC_SL1500_.jpg" alt="Free Fire Cover">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="Free Fire Cover">
           <div class="title">2,200 Diamonds</div>
           <div class="subtitle">Free Fire</div>
           <div class="price">$5,200 GYD</div>
@@ -772,56 +787,56 @@
     <div class="cards-slider-wrapper" id="roblox-slider">
       <div class="cards-slider">
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">40 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '40 Robux', '$300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">80 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$600 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '80 Robux', '$600 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">500 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '500 Robux', '$1,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">1,000 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$2,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '1,000 Robux', '$2,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">2,000 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$4,600 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '2,000 Robux', '$4,600 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">4,500 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$11,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '4,500 Robux', '$11,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">10,000 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$21,500 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '10,000 Robux', '$21,500 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="https://m.media-amazon.com/images/I/61N8O9A52bL._AC_SL1500_.jpg" alt="Roblox Cover">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Roblox Cover">
           <div class="title">22,500 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$43,000 GYD</div>
