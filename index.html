@@ -23,7 +23,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
+      padding: 18px 60px;
       background: rgba(10, 14, 23, 0.85);
       backdrop-filter: blur(10px);
       position: sticky;
@@ -39,7 +39,7 @@
     }
 
     .logo-infinity {
-      font-size: 28px;
+      font-size: 32px;
       background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #00c6ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -47,7 +47,7 @@
     }
 
     .logo-text {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #ffffff;
@@ -56,14 +56,14 @@
 
     nav {
       display: flex;
-      gap: 20px;
+      gap: 30px;
     }
 
     nav a {
       color: #8b949e;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
       transition: color 0.3s;
     }
 
@@ -73,9 +73,9 @@
 
     .header-actions {
       display: flex;
-      gap: 20px;
+      gap: 25px;
       color: #8b949e;
-      font-size: 14px;
+      font-size: 16px;
       cursor: pointer;
     }
 
@@ -86,9 +86,9 @@
     /* HERO SECTION */
     .hero {
       position: relative;
-      padding: 80px 20px 100px;
+      padding: 110px 20px 130px;
       text-align: center;
-      background: radial-gradient(circle at center, rgba(14, 116, 144, 0.15) 0%, rgba(5, 7, 10, 1) 70%);
+      background: radial-gradient(circle at center, rgba(14, 116, 144, 0.18) 0%, rgba(5, 7, 10, 1) 75%);
       border-bottom: 1px solid #161e2e;
       overflow: hidden;
     }
@@ -98,37 +98,37 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 600px;
-      height: 250px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+      width: 800px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
       pointer-events: none;
     }
 
     .hero h1 {
-      font-size: 48px;
+      font-size: 56px;
       font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
       color: #ffffff;
     }
 
     .hero p {
       color: #94a3b8;
-      font-size: 16px;
-      margin-bottom: 30px;
+      font-size: 20px;
+      margin-bottom: 35px;
     }
 
     .hero-buttons {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 20px;
     }
 
     .btn {
-      padding: 12px 28px;
+      padding: 14px 36px;
       border-radius: 30px;
-      font-weight: 600;
-      font-size: 14px;
+      font-weight: 700;
+      font-size: 16px;
       cursor: pointer;
       transition: all 0.3s;
       text-decoration: none;
@@ -138,47 +138,47 @@
       background: transparent;
       color: #38bdf8;
       border: 1px solid #0284c7;
-      box-shadow: 0 0 15px rgba(2, 132, 199, 0.3);
+      box-shadow: 0 0 18px rgba(2, 132, 199, 0.35);
     }
 
     .btn-glow-blue:hover {
       background: #0284c7;
       color: #fff;
-      box-shadow: 0 0 25px rgba(2, 132, 199, 0.6);
+      box-shadow: 0 0 30px rgba(2, 132, 199, 0.7);
     }
 
     /* MAIN CATEGORIES */
     .section-container {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 20px;
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 30px;
     }
 
     .section-title {
       text-align: center;
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 35px;
       color: #f1f5f9;
     }
 
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
     }
 
     .cat-card {
       background: #0b0f17;
-      border-radius: 12px;
-      padding: 25px 20px;
+      border-radius: 14px;
+      padding: 30px 25px;
       text-align: center;
       transition: all 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      min-height: 220px;
+      min-height: 250px;
     }
 
     .cat-card.blue {
@@ -188,8 +188,8 @@
 
     .cat-card.blue:hover {
       border-color: #38bdf8;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
-      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+      transform: translateY(-5px);
     }
 
     .cat-card.green {
@@ -199,26 +199,26 @@
 
     .cat-card.green:hover {
       border-color: #4ade80;
-      box-shadow: 0 0 20px rgba(74, 222, 128, 0.25);
-      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(74, 222, 128, 0.3);
+      transform: translateY(-5px);
     }
 
     .cat-icon {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: 40px;
+      margin-bottom: 12px;
     }
 
     .cat-card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
+      font-size: 20px;
+      margin-bottom: 10px;
       color: #f8fafc;
     }
 
     .cat-card p {
-      font-size: 12px;
+      font-size: 14px;
       color: #64748b;
-      margin-bottom: 20px;
-      line-height: 1.4;
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
 
     /* CAROUSEL / SLIDER SECTION */
@@ -226,25 +226,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .slider-controls {
       display: flex;
-      gap: 10px;
+      gap: 12px;
     }
 
     .slider-btn {
       background: #1e293b;
       border: 1px solid #334155;
       color: #fff;
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 18px;
       transition: 0.2s;
     }
 
@@ -256,27 +257,27 @@
     .cards-slider-wrapper {
       overflow-x: auto;
       scroll-behavior: smooth;
-      scrollbar-width: none; /* Firefox */
-      padding: 10px 0;
+      scrollbar-width: none;
+      padding: 12px 0;
     }
 
     .cards-slider-wrapper::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
+      display: none;
     }
 
     .cards-slider {
       display: flex;
-      gap: 20px;
+      gap: 25px;
     }
 
     /* GAME & ITEM CARDS */
     .game-card {
-      min-width: 220px;
-      max-width: 220px;
+      min-width: 240px;
+      max-width: 240px;
       background: #0d131d;
       border: 1px solid #1e293b;
-      border-radius: 12px;
-      padding: 15px;
+      border-radius: 14px;
+      padding: 18px;
       text-align: center;
       transition: all 0.3s;
       flex-shrink: 0;
@@ -284,47 +285,48 @@
 
     .game-card:hover {
       border-color: #38bdf8;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      transform: translateY(-4px);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+      transform: translateY(-5px);
     }
 
     .game-card img {
       width: 100%;
-      height: 130px;
+      height: 150px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 12px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      background-color: #1e293b;
     }
 
     .game-card .title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       color: #f1f5f9;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .game-card .subtitle {
-      font-size: 12px;
+      font-size: 13px;
       color: #64748b;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .game-card .price {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 800;
       color: #38bdf8;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .btn-card {
       width: 100%;
-      padding: 8px 0;
+      padding: 10px 0;
       background: #1e293b;
       border: 1px solid #334155;
       color: #38bdf8;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
       transition: 0.2s;
     }
@@ -339,15 +341,15 @@
     .payment-banner {
       background: linear-gradient(90deg, #0b1320 0%, #111c2e 100%);
       border: 1px solid #1e293b;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 40px auto;
-      max-width: 1200px;
+      border-radius: 14px;
+      padding: 28px;
+      margin: 50px auto;
+      max-width: 1400px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
@@ -357,40 +359,41 @@
 
     .info-box span {
       display: block;
-      font-size: 12px;
+      font-size: 13px;
       color: #64748b;
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-bottom: 4px;
     }
 
     .info-box strong {
-      font-size: 16px;
+      font-size: 18px;
       color: #38bdf8;
     }
 
     /* FLOATING WHATSAPP & CHAT WIDGET */
     .floating-chat {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 25px;
+      right: 25px;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 10px;
+      gap: 12px;
       z-index: 1000;
     }
 
     .chat-btn {
       background: #0284c7;
       color: white;
-      padding: 10px 18px;
-      border-radius: 25px;
-      font-size: 13px;
-      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(2, 132, 199, 0.4);
       cursor: pointer;
       border: none;
       text-decoration: none;
@@ -398,7 +401,7 @@
 
     .wa-btn {
       background: #25d366;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
     }
 
     /* MODAL POPUP */
@@ -408,8 +411,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -419,43 +422,43 @@
     .modal-box {
       background: #0d131d;
       border: 1px solid #1e293b;
-      border-radius: 12px;
-      padding: 25px;
+      border-radius: 14px;
+      padding: 30px;
       width: 90%;
-      max-width: 400px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      max-width: 440px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8);
       position: relative;
     }
 
     .modal-box h3 {
       color: #ffffff;
-      margin-bottom: 10px;
-      font-size: 20px;
+      margin-bottom: 12px;
+      font-size: 22px;
     }
 
     .modal-box p {
       color: #94a3b8;
-      font-size: 13px;
-      margin-bottom: 20px;
+      font-size: 14px;
+      margin-bottom: 22px;
     }
 
     .modal-box label {
       display: block;
       color: #cbd5e1;
-      font-size: 12px;
-      margin-bottom: 6px;
+      font-size: 13px;
+      margin-bottom: 8px;
       text-align: left;
     }
 
     .modal-box input {
       width: 100%;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
       border: 1px solid #334155;
       background: #05070a;
       color: #fff;
-      font-size: 14px;
-      margin-bottom: 20px;
+      font-size: 15px;
+      margin-bottom: 22px;
       outline: none;
     }
 
@@ -465,7 +468,7 @@
 
     .modal-actions {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       justify-content: flex-end;
     }
 
@@ -473,8 +476,8 @@
       background: #1e293b;
       color: #94a3b8;
       border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
     }
@@ -483,19 +486,19 @@
       background: #25d366;
       color: #fff;
       border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 35px;
       border-top: 1px solid #161e2e;
       color: #64748b;
-      font-size: 13px;
-      margin-top: 50px;
+      font-size: 14px;
+      margin-top: 60px;
     }
   </style>
 </head>
@@ -552,7 +555,7 @@
         <button class="btn-card" onclick="scrollToSection('roblox')">View Packages</button>
       </div>
 
-      <div class="cat-card blue">
+      <div class="cat-card blue" id="giftcards">
         <div>
           <div class="cat-icon">🎁</div>
           <h3>Gift Cards</h3>
@@ -588,54 +591,54 @@
     </div>
   </div>
 
-  <!-- PUBG MOBILE SECTION (MOVEABLE SLIDER) -->
+  <!-- PUBG MOBILE SECTION -->
   <div class="section-container" id="gaming">
     <div class="slider-header">
       <h2 class="section-title" style="margin:0; text-align:left;">🔥 PUBG Mobile (UC)</h2>
       <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('pubg-slider', -250)">❮</button>
-        <button class="slider-btn" onclick="slide('pubg-slider', 250)">❯</button>
+        <button class="slider-btn" onclick="slide('pubg-slider', -280)">❮</button>
+        <button class="slider-btn" onclick="slide('pubg-slider', 280)">❯</button>
       </div>
     </div>
     <div class="cards-slider-wrapper" id="pubg-slider">
       <div class="cards-slider">
         <div class="game-card">
-          <img src="8552.png" alt="UC">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="PUBG UC">
           <div class="title">60 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '60 UC', '$300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="8552.png" alt="UC">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="PUBG UC">
           <div class="title">325 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '325 UC', '$1,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="8552.png" alt="UC">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="PUBG UC">
           <div class="title">660 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$2,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '660 UC', '$2,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="8552.png" alt="UC">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="PUBG UC">
           <div class="title">1,800 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$5,500 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '1,800 UC', '$5,500 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="8552.png" alt="UC">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="PUBG UC">
           <div class="title">3,850 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$11,400 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '3,850 UC', '$11,400 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="8552.png" alt="UC">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="PUBG UC">
           <div class="title">8,100 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$21,500 GYD</div>
@@ -645,54 +648,54 @@
     </div>
   </div>
 
-  <!-- COD MOBILE SECTION (MOVEABLE SLIDER) -->
+  <!-- COD MOBILE SECTION -->
   <div class="section-container">
     <div class="slider-header">
       <h2 class="section-title" style="margin:0; text-align:left;">🎯 COD Mobile (CP)</h2>
       <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('cod-slider', -250)">❮</button>
-        <button class="slider-btn" onclick="slide('cod-slider', 250)">❯</button>
+        <button class="slider-btn" onclick="slide('cod-slider', -280)">❮</button>
+        <button class="slider-btn" onclick="slide('cod-slider', 280)">❯</button>
       </div>
     </div>
     <div class="cards-slider-wrapper" id="cod-slider">
       <div class="cards-slider">
         <div class="game-card">
-          <img src="9468.jpg" alt="CP">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="COD CP">
           <div class="title">80 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$400 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '80 CP', '$400 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9468.jpg" alt="CP">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="COD CP">
           <div class="title">420 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '420 CP', '$1,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9468.jpg" alt="CP">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="COD CP">
           <div class="title">880 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$2,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '880 CP', '$2,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9468.jpg" alt="CP">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="COD CP">
           <div class="title">2,400 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$5,500 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '2,400 CP', '$5,500 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9468.jpg" alt="CP">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="COD CP">
           <div class="title">5,000 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$11,000 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '5,000 CP', '$11,000 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9468.jpg" alt="CP">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="COD CP">
           <div class="title">10,800 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$21,500 GYD</div>
@@ -702,68 +705,68 @@
     </div>
   </div>
 
-  <!-- ROBLOX SECTION (MOVEABLE SLIDER) -->
+  <!-- ROBLOX SECTION -->
   <div class="section-container" id="roblox">
     <div class="slider-header">
       <h2 class="section-title" style="margin:0; text-align:left;">🧱 Roblox (Robux)</h2>
       <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('roblox-slider', -250)">❮</button>
-        <button class="slider-btn" onclick="slide('roblox-slider', 250)">❯</button>
+        <button class="slider-btn" onclick="slide('roblox-slider', -280)">❮</button>
+        <button class="slider-btn" onclick="slide('roblox-slider', 280)">❯</button>
       </div>
     </div>
     <div class="cards-slider-wrapper" id="roblox-slider">
       <div class="cards-slider">
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">40 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '40 Robux', '$300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">80 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$600 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '80 Robux', '$600 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">500 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '500 Robux', '$1,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">1,000 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$2,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '1,000 Robux', '$2,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">2,000 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$4,600 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '2,000 Robux', '$4,600 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">4,500 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$11,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '4,500 Robux', '$11,300 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">10,000 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$21,500 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '10,000 Robux', '$21,500 GYD')">Buy Now</button>
         </div>
         <div class="game-card">
-          <img src="9469.jpg" alt="Robux">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80" alt="Robux">
           <div class="title">22,500 Robux</div>
           <div class="subtitle">Roblox</div>
           <div class="price">$43,000 GYD</div>
@@ -800,7 +803,6 @@
     <p>DARK Hub © 2026 | Digital Entertainment, Gaming & MMG Services Guyana</p>
   </footer>
 
-  <!-- JS FOR SCROLLING SLIDERS & WHATSAPP ORDERS -->
   <script>
     let selectedGame = "";
     let selectedPackage = "";
@@ -841,7 +843,7 @@
         return;
       }
 
-      const phoneNumber = "13436555995"; // Your WhatsApp Contact
+      const phoneNumber = "13436555995";
       const message = `Hello DARK Hub! I would like to purchase:\n\n` +
                       `🎮 Game: ${selectedGame}\n` +
                       `📦 Package: ${selectedPackage}\n` +
@@ -859,3 +861,4 @@
 
 </body>
 </html>
+
