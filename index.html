@@ -1,211 +1,289 @@
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1400, initial-scale=0.3">
+  <title>DARK - Digital Entertainment & Gaming Hub</title>
 
-  <!-- HEADER NAVBAR -->
-  <header>
-    <div class="logo-container">
-      <span class="logo-infinity">∞</span>
-      <span class="logo-text">DARK</span>
-    </div>
-    <nav>
-      <a href="#" class="active">Home</a>
-      <a href="#pubg">PUBG UC</a>
-      <a href="#codm">COD CP</a>
-      <a href="#roblox">Roblox</a>
-      <a href="#freefire">Free Fire</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#giftcards">Gift Cards</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="header-actions">
-      <span>Search 🔍</span>
-      <span>Cart 🛒</span>
-    </div>
-  </header>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <h1>WELCOME TO DARK</h1>
-    <p>Your Digital Entertainment & Gaming Hub in Guyana</p>
-    <div class="hero-buttons">
-      <a href="#pubg" class="btn btn-glow-blue">Browse Gaming</a>
-      <a href="#contact" class="btn btn-glow-blue">Payment Info</a>
-    </div>
-  </section>
+    body {
+      background-color: #05070a;
+      color: #e6edf3;
+      overflow-x: auto;
+      min-width: 1400px;
+    }
 
-  <!-- MAIN CATEGORIES -->
-  <div class="section-container">
-    <h2 class="section-title">Main Categories</h2>
-    <div class="categories-grid">
-      <div class="cat-card blue">
-        <div>
-          <div class="cat-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 11 6 4 11 4 11 11 6 11"/><polygon points="13 11 13 4 18 4 18 11 13 11"/><polygon points="6 20 6 13 11 13 11 20 6 20"/><polygon points="13 20 13 13 18 13 18 20 13 20"/></svg>
-          </div>
-          <h3>Gaming UC & CP</h3>
-          <p>PUBG Mobile UC, COD Mobile CP, Free Fire Diamonds</p>
-        </div>
-        <button class="btn-card" onclick="scrollToSection('pubg')">View Packages</button>
-      </div>
+    /* NAVIGATION */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #1f293d;
+      min-width: 1400px;
+    }
 
-      <div class="cat-card blue">
-        <div>
-          <div class="cat-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-          </div>
-          <h3>Roblox</h3>
-          <p>Instant Robux top-ups for all packages</p>
-        </div>
-        <button class="btn-card" onclick="scrollToSection('roblox')">View Packages</button>
-      </div>
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-      <div class="cat-card blue" id="giftcards">
-        <div>
-          <div class="cat-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-          </div>
-          <h3>Gift Cards</h3>
-          <p>Apple, PlayStation, Xbox, Steam & More</p>
-        </div>
-        <button class="btn-card" onclick="scrollToSection('giftcards')">View Packages</button>
-      </div>
+    .logo-infinity {
+      font-size: 32px;
+      background: linear-gradient(135deg, #00f2fe, #4facfe, #00c6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
 
-      <div class="cat-card green">
-        <div>
-          <div class="cat-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-          </div>
-          <h3>Digital Services</h3>
-          <p>MMG Transfers, Bill Payments & Instant Top-ups</p>
-        </div>
-        <button class="btn-card" style="color:#4ade80; border-color:#22c55e;" onclick="scrollToSection('contact')">MMG Info</button>
-      </div>
-    </div>
-  </div>
+    .logo-text {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,255,255,.3);
+    }
 
-  <!-- CONTACT & MMG PAYMENT BANNER -->
-  <div class="payment-banner" id="contact">
-    <div class="info-box">
-      <span>WhatsApp Contact</span>
-      <strong>+1 (343) 655-5995 / 700-2769</strong>
-    </div>
-    <div class="info-box">
-      <span>MMG Number</span>
-      <strong>762-6433</strong>
-    </div>
-    <div class="info-box">
-      <span>MMG Merchant Name</span>
-      <strong>CASSIA HENRY</strong>
-    </div>
-  </div>
+    nav {
+      display: flex;
+      gap: 30px;
+    }
 
-  <!-- GAME IMAGE GALLERY SECTION -->
-  <div class="gallery-container" id="gallery">
-    <h2 class="section-title">Game Image Gallery</h2>
-    <div class="gallery">
-      <!-- Image 1: Call of Duty -->
-      <div class="gallery-card">
-        <img src="f9f56c26780ac312b21e2d3a7da703f5.jpg" alt="Call of Duty Points">
-        <p>Call of Duty</p>
-      </div>
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: color .3s;
+    }
 
-      <!-- Image 2: Free Fire -->
-      <div class="gallery-card">
-        <img src="30de15ba0e69c62e5e5987ceaae08401.jpg" alt="Free Fire Diamonds">
-        <p>Free Fire</p>
-      </div>
+    nav a:hover,
+    nav a.active {
+      color: #38bdf8;
+    }
 
-      <!-- Image 3: Roblox -->
-      <div class="gallery-card">
-        <img src="f93f089a3d8211ede4c832c3a24efe1e.jpg" alt="Roblox Characters">
-        <p>Roblox</p>
-      </div>
+    .header-actions {
+      display: flex;
+      gap: 25px;
+      color: #8b949e;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-      <!-- Image 4: PUBG Mobile -->
-      <div class="gallery-card">
-        <img src="f31054399c0c2604548ba7dfdced2a62.jpg" alt="PUBG Mobile Unknown Cash">
-        <p>PUBG Mobile</p>
-      </div>
-    </div>
-  </div>
+    .header-actions span:hover {
+      color: #fff;
+    }
 
-  <!-- PUBG MOBILE SECTION -->
-  <div class="section-container" id="pubg">
-    <div class="slider-header">
-      <h2 class="section-title" style="margin:0; text-align:left;">🔥 PUBG Mobile (UC)</h2>
-      <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('pubg-slider', -280)">❮</button>
-        <button class="slider-btn" onclick="slide('pubg-slider', 280)">❯</button>
-      </div>
-    </div>
-    <div class="cards-slider-wrapper" id="pubg-slider">
-      <div class="cards-slider">
-        <div class="game-card">
-          <div class="card-media">
-            <img src="f31054399c0c2604548ba7dfdced2a62.jpg" alt="PUBG Mobile UC">
-          </div>
-          <div class="title">60 UC</div>
-          <div class="subtitle">PUBG Mobile</div>
-          <div class="price">$300 GYD</div>
-          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '60 UC', '$300 GYD')">Buy Now</button>
-        </div>
-        <div class="game-card">
-          <div class="card-media">
-            <img src="f31054399c0c2604548ba7dfdced2a62.jpg" alt="PUBG Mobile UC">
-          </div>
-          <div class="title">325 UC</div>
-          <div class="subtitle">PUBG Mobile</div>
-          <div class="price">$1,300 GYD</div>
-          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '325 UC', '$1,300 GYD')">Buy Now</button>
-        </div>
-        <div class="game-card">
-          <div class="card-media">
-            <img src="f31054399c0c2604548ba7dfdced2a62.jpg" alt="PUBG Mobile UC">
-          </div>
-          <div class="title">660 UC</div>
-          <div class="subtitle">PUBG Mobile</div>
-          <div class="price">$2,300 GYD</div>
-          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '660 UC', '$2,300 GYD')">Buy Now</button>
-        </div>
-        <div class="game-card">
-          <div class="card-media">
-            <img src="f31054399c0c2604548ba7dfdced2a62.jpg" alt="PUBG Mobile UC">
-          </div>
-          <div class="title">1,800 UC</div>
-          <div class="subtitle">PUBG Mobile</div>
-          <div class="price">$5,500 GYD</div>
-          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '1,800 UC', '$5,500 GYD')">Buy Now</button>
-        </div>
-        <div class="game-card">
-          <div class="card-media">
-            <img src="f31054399c0c2604548ba7dfdced2a62.jpg" alt="PUBG Mobile UC">
-          </div>
-          <div class="title">3,850 UC</div>
-          <div class="subtitle">PUBG Mobile</div>
-          <div class="price">$11,400 GYD</div>
-          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '3,850 UC', '$11,400 GYD')">Buy Now</button>
-        </div>
-        <div class="game-card">
-          <div class="card-media">
-            <img src="f31054399c0c2604548ba7dfdced2a62.jpg" alt="PUBG Mobile UC">
-          </div>
-          <div class="title">8,100 UC</div>
-          <div class="subtitle">PUBG Mobile</div>
-          <div class="price">$21,500 GYD</div>
-          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '8,100 UC', '$21,500 GYD')">Buy Now</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 110px 20px 130px;
+      text-align: center;
+      background: radial-gradient(
+        circle at center,
+        rgba(14,116,144,.18) 0%,
+        rgba(5,7,10,1) 75%
+      );
+      border-bottom: 1px solid #161e2e;
+      overflow: hidden;
+    }
 
-  <!-- COD MOBILE SECTION -->
-  <div class="section-container" id="codm">
-    <div class="slider-header">
-      <h2 class="section-title" style="margin:0; text-align:left;">🎯 COD Mobile (CP)</h2>
-      <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('cod-slider', -280)">❮</button>
-        <button class="slider-btn" onclick="slide('cod-slider', 280)">❯</button>
-      </div>
-    </div>
-    <div class="cards-slider-wrapper" id="cod-slider">
-      <div cla
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 800px;
+      height: 350px;
+      background: radial-gradient(
+        circle,
+        rgba(6,182,212,.25) 0%,
+        rgba(0,0,0,0) 70%
+      );
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .hero p {
+      color: #94a3b8;
+      font-size: 20px;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all .3s;
+      text-decoration: none;
+    }
+
+    .btn-glow-blue {
+      background: transparent;
+      color: #38bdf8;
+      border: 1px solid #0284c7;
+      box-shadow: 0 0 18px rgba(2,132,199,.35);
+    }
+
+    .btn-glow-blue:hover {
+      background: #0284c7;
+      color: #fff;
+      box-shadow: 0 0 30px rgba(2,132,199,.7);
+    }
+
+    /* SECTIONS */
+    .section-container {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 30px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 35px;
+      color: #f1f5f9;
+    }
+
+    /* CATEGORIES */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 25px;
+    }
+
+    .cat-card {
+      background: #0b0f17;
+      border-radius: 14px;
+      padding: 30px 25px;
+      text-align: center;
+      transition: all .3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 250px;
+    }
+
+    .cat-card.blue {
+      border: 1px solid rgba(14,165,233,.3);
+      box-shadow: 0 0 15px rgba(14,165,233,.05);
+    }
+
+    .cat-card.blue:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 25px rgba(56,189,248,.3);
+      transform: translateY(-5px);
+    }
+
+    .cat-card.green {
+      border: 1px solid rgba(34,197,94,.3);
+      box-shadow: 0 0 15px rgba(34,197,94,.05);
+    }
+
+    .cat-card.green:hover {
+      border-color: #4ade80;
+      box-shadow: 0 0 25px rgba(74,222,128,.3);
+      transform: translateY(-5px);
+    }
+
+    .cat-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .cat-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #f8fafc;
+    }
+
+    .cat-card p {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* SLIDERS */
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .slider-controls {
+      display: flex;
+      gap: 12px;
+    }
+
+    .slider-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: .2s;
+    }
+
+    .slider-btn:hover {
+      background: #0284c7;
+      border-color: #38bdf8;
+    }
+
+    .cards-slider-wrapper {
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 12px 0;
+    }
+
+    .cards-slider-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cards-slider {
+      display: flex;
+      gap: 25px;
+    }
+
+    /* GAME CARDS */
+    .game-card {
+      min-width: 240px;
+     
