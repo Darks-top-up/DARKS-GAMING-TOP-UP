@@ -221,6 +221,47 @@
       line-height: 1.5;
     }
 
+    /* Integrated Gallery Styles */
+    .gallery-container {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 30px;
+      text-align: center;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .gallery-card {
+      background-color: #0b0f17;
+      border: 1px solid #1e293b;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      width: 260px;
+      text-align: center;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .gallery-card p {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #f1f5f9;
+      font-size: 16px;
+    }
+
     .slider-header {
       display: flex;
       justify-content: space-between;
@@ -520,6 +561,7 @@
       <a href="#codm">COD CP</a>
       <a href="#roblox">Roblox</a>
       <a href="#freefire">Free Fire</a>
+      <a href="#gallery">Gallery</a>
       <a href="#giftcards">Gift Cards</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -603,6 +645,36 @@
     <div class="info-box">
       <span>MMG Merchant Name</span>
       <strong>CASSIA HENRY</strong>
+    </div>
+  </div>
+
+  <!-- GAME IMAGE GALLERY SECTION -->
+  <div class="gallery-container" id="gallery">
+    <h2 class="section-title">Game Image Gallery</h2>
+    <div class="gallery">
+      <!-- Image 1: Call of Duty -->
+      <div class="gallery-card">
+        <img src="cod.png" alt="Call of Duty Points">
+        <p>Call of Duty</p>
+      </div>
+
+      <!-- Image 2: Free Fire -->
+      <div class="gallery-card">
+        <img src="freefire.png" alt="Free Fire Diamonds">
+        <p>Free Fire</p>
+      </div>
+
+      <!-- Image 3: Roblox -->
+      <div class="gallery-card">
+        <img src="roblox.png" alt="Roblox Characters">
+        <p>Roblox</p>
+      </div>
+
+      <!-- Image 4: PUBG Mobile -->
+      <div class="gallery-card">
+        <img src="pubg.png" alt="PUBG Mobile Unknown Cash">
+        <p>PUBG Mobile</p>
+      </div>
     </div>
   </div>
 
