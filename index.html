@@ -1,289 +1,710 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=1400, initial-scale=0.3">
-  <title>DARK - Digital Entertainment & Gaming Hub</title>
+<!-- GAMER ID + RECEIPT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+<div class="modal" id="gamerModal">
+
+  <h3 id="modalTitle">Enter Gamer Info</h3>
+
+  <p id="modalDesc">
+    Enter your Gamer ID or Username and optionally upload your payment receipt.
+  </p>
+
+  <label style="
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    color:#aeb8c7;
+    margin-bottom:7px;
+  ">
+    Gamer ID / Username
+  </label>
+
+  <input
+    type="text"
+    id="gamerIdInput"
+    placeholder="e.g. Player123 or ID #12345678"
+  >
+
+  <label style="
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    color:#aeb8c7;
+    margin-bottom:7px;
+  ">
+    Payment Receipt
+    <span style="color:#788597;font-weight:500;">
+      (Optional)
+    </span>
+  </label>
+
+  <input
+    type="file"
+    id="receiptInput"
+    accept="image/*"
+    style="
+      padding:10px;
+      cursor:pointer;
+    "
+  >
+
+  <div style="
+    font-size:11px;
+    color:#687586;
+    margin-top:-10px;
+    margin-bottom:18px;
+    line-height:1.5;
+  ">
+    Upload a screenshot/photo of your payment receipt.
+    The receipt image will need to be sent directly in WhatsApp.
+  </div>
+
+  <div class="modal-actions">
+
+    <button
+      class="btn btn-secondary"
+      onclick="closeModal()"
+    >
+      Cancel
+    </button>
+
+    <button
+      class="btn btn-primary"
+      onclick="confirmAddToCart()"
+    >
+      Add & Order
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+let cart = [];
+let pendingItem = null;
+
+const products = document.querySelectorAll(".product");
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("open");
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function focusSearch(){
+
+  const search = document.getElementById("searchInput");
+
+  document.getElementById("gaming").scrollIntoView({
+    behavior:"smooth"
+  });
+
+  setTimeout(()=>{
+    search.focus();
+  },500);
+}
+
+
+/* =========================
+   FILTER PRODUCTS
+========================= */
+
+function filterProducts(game,button){
+
+  document.querySelectorAll(".filter").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  products.forEach(product=>{
+
+    if(
+      game === "all" ||
+      product.dataset.game === game
+    ){
+      product.style.display = "";
+    }else{
+      product.style.display = "none";
     }
 
-    body {
-      background-color: #05070a;
-      color: #e6edf3;
-      overflow-x: auto;
-      min-width: 1400px;
-    }
+  });
 
-    /* NAVIGATION */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 60px;
-      background: rgba(10, 14, 23, 0.85);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid #1f293d;
-      min-width: 1400px;
-    }
+  document.getElementById("searchInput").value = "";
+}
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
 
-    .logo-infinity {
-      font-size: 32px;
-      background: linear-gradient(135deg, #00f2fe, #4facfe, #00c6ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
-    }
+/* =========================
+   SEARCH PRODUCTS
+========================= */
 
-    .logo-text {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #fff;
-      text-shadow: 0 0 10px rgba(255,255,255,.3);
-    }
+function searchProducts(){
 
-    nav {
-      display: flex;
-      gap: 30px;
-    }
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
 
-    nav a {
-      color: #8b949e;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 600;
-      transition: color .3s;
-    }
+  products.forEach(product=>{
 
-    nav a:hover,
-    nav a.active {
-      color: #38bdf8;
-    }
+    const name =
+      product.dataset.name.toLowerCase();
 
-    .header-actions {
-      display: flex;
-      gap: 25px;
-      color: #8b949e;
-      font-size: 16px;
-      cursor: pointer;
-    }
+    product.style.display =
+      name.includes(query) ? "" : "none";
 
-    .header-actions span:hover {
-      color: #fff;
-    }
+  });
+}
 
-    /* HERO */
-    .hero {
-      position: relative;
-      padding: 110px 20px 130px;
-      text-align: center;
-      background: radial-gradient(
-        circle at center,
-        rgba(14,116,144,.18) 0%,
-        rgba(5,7,10,1) 75%
+
+/* =========================
+   OPEN GAMER ID MODAL
+========================= */
+
+function promptGamerId(name, price, image){
+
+  pendingItem = {
+    name: name,
+    price: price,
+    image: image
+  };
+
+  document.getElementById("modalTitle").textContent =
+    "Top-up: " + name;
+
+  document.getElementById("gamerIdInput").value = "";
+
+  // Clear previous receipt
+  document.getElementById("receiptInput").value = "";
+
+  document
+    .getElementById("gamerModal")
+    .classList.add("open");
+
+  document
+    .getElementById("modalOverlay")
+    .classList.add("open");
+
+  setTimeout(()=>{
+
+    document
+      .getElementById("gamerIdInput")
+      .focus();
+
+  },100);
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal(){
+
+  document
+    .getElementById("gamerModal")
+    .classList.remove("open");
+
+  document
+    .getElementById("modalOverlay")
+    .classList.remove("open");
+
+  pendingItem = null;
+}
+
+
+/* =========================
+   CONFIRM ORDER
+========================= */
+
+function confirmAddToCart(){
+
+  if(!pendingItem){
+
+    showToast("Please select a package first.");
+
+    return;
+  }
+
+  const gamerId =
+    document
+      .getElementById("gamerIdInput")
+      .value
+      .trim();
+
+  const fileInput =
+    document.getElementById("receiptInput");
+
+  const file =
+    fileInput.files[0];
+
+
+  /* Gamer ID required */
+
+  if(!gamerId){
+
+    showToast(
+      "Please enter your Gamer ID or Username!"
+    );
+
+    return;
+  }
+
+
+  /*
+    If receipt was uploaded,
+    convert it to Data URL.
+  */
+
+  if(file){
+
+    // Only allow images
+    if(!file.type.startsWith("image/")){
+
+      showToast(
+        "Please upload an image receipt."
       );
-      border-bottom: 1px solid #161e2e;
-      overflow: hidden;
+
+      return;
     }
 
-    .hero-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      width: 800px;
-      height: 350px;
-      background: radial-gradient(
-        circle,
-        rgba(6,182,212,.25) 0%,
-        rgba(0,0,0,0) 70%
+
+    const reader = new FileReader();
+
+
+    reader.onload = function(e){
+
+      saveAndOrder(
+        gamerId,
+        e.target.result,
+        file.name
       );
-      pointer-events: none;
+
+    };
+
+
+    reader.onerror = function(){
+
+      showToast(
+        "Could not read the receipt image."
+      );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+
+  }else{
+
+    // No receipt uploaded
+
+    saveAndOrder(
+      gamerId,
+      null,
+      null
+    );
+
+  }
+}
+
+
+/* =========================
+   SAVE ITEM + ORDER
+========================= */
+
+function saveAndOrder(
+  gamerId,
+  receiptDataUrl,
+  fileName
+){
+
+  if(!pendingItem){
+
+    showToast("Something went wrong.");
+
+    return;
+  }
+
+
+  const newItem = {
+
+    name: pendingItem.name,
+
+    price: pendingItem.price,
+
+    image: pendingItem.image,
+
+    gamerId: gamerId,
+
+    receipt: receiptDataUrl,
+
+    receiptName: fileName
+
+  };
+
+
+  cart.push(newItem);
+
+
+  closeModal();
+
+
+  updateCart();
+
+
+  showToast(
+    "Added to cart ✓"
+  );
+
+
+  /*
+    Automatically open WhatsApp
+    for the newly selected item.
+  */
+
+  sendWhatsAppOrder(newItem);
+}
+
+
+/* =========================
+   REMOVE FROM CART
+========================= */
+
+function removeFromCart(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+}
+
+
+/* =========================
+   UPDATE CART
+========================= */
+
+function updateCart(){
+
+  const container =
+    document.getElementById("cartItems");
+
+  const count =
+    document.getElementById("cartCount");
+
+  const total =
+    document.getElementById("cartTotal");
+
+
+  count.textContent =
+    cart.length;
+
+
+  if(cart.length === 0){
+
+    container.innerHTML =
+      '<div class="empty">Your cart is empty.</div>';
+
+    total.textContent =
+      "GYD 0";
+
+    return;
+  }
+
+
+  let sum = 0;
+
+
+  container.innerHTML =
+    cart.map((item,index)=>{
+
+      sum += item.price;
+
+
+      const hasReceipt =
+        item.receiptName
+        ?
+        `
+        <div style="
+          font-size:10px;
+          color:#00ff95;
+          margin-top:3px;
+          font-weight:800;
+        ">
+          Receipt Attached ✓
+        </div>
+        `
+        :
+        "";
+
+
+      return `
+
+        <div class="cart-item">
+
+          <img
+            src="${item.image}"
+            alt="${item.name}"
+          >
+
+          <div>
+
+            <h4>
+              ${item.name}
+            </h4>
+
+            <div class="cart-uid">
+              ID: ${item.gamerId}
+            </div>
+
+            ${hasReceipt}
+
+            <p>
+              GYD ${item.price.toLocaleString()}
+            </p>
+
+          </div>
+
+          <button
+            class="remove"
+            onclick="removeFromCart(${index})"
+          >
+            ✕
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  total.textContent =
+    "GYD " + sum.toLocaleString();
+}
+
+
+/* =========================
+   OPEN CART
+========================= */
+
+function openCart(){
+
+  document
+    .getElementById("cart")
+    .classList.add("open");
+
+  document
+    .getElementById("cartOverlay")
+    .classList.add("open");
+}
+
+
+/* =========================
+   CLOSE CART
+========================= */
+
+function closeCart(){
+
+  document
+    .getElementById("cart")
+    .classList.remove("open");
+
+  document
+    .getElementById("cartOverlay")
+    .classList.remove("open");
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+
+  setTimeout(()=>{
+
+    toast.classList.remove("show");
+
+  },2000);
+}
+
+
+/* =========================
+   WHATSAPP SINGLE ORDER
+========================= */
+
+function sendWhatsAppOrder(item){
+
+  let messageText =
+    "Hi DARK! I'd like to place an order:\n\n" +
+
+    "• " +
+    item.name +
+    " — GYD " +
+    item.price.toLocaleString() +
+    "\n" +
+
+    "👤 Gamer ID / Username: " +
+    item.gamerId +
+    "\n";
+
+
+  /*
+    If receipt exists,
+    include receipt filename.
+  */
+
+  if(item.receiptName){
+
+    messageText +=
+      "📎 Payment Receipt Attached: " +
+      item.receiptName +
+      "\n" +
+
+      "I will send the receipt image directly in this chat.\n";
+  }
+
+
+  messageText +=
+    "\n" +
+
+    "Total: GYD " +
+    item.price.toLocaleString() +
+
+    "\n\n" +
+
+    "Please send me the payment instructions/confirmation.";
+
+
+  const message =
+    encodeURIComponent(messageText);
+
+
+  window.open(
+    "https://wa.me/13436555995?text=" +
+    message,
+    "_blank"
+  );
+}
+
+
+/* =========================
+   CHECKOUT MULTIPLE ITEMS
+========================= */
+
+function checkout(){
+
+  if(cart.length === 0){
+
+    showToast(
+      "Your cart is empty."
+    );
+
+    return;
+  }
+
+
+  let receiptNames = [];
+
+
+  const items = cart.map(item=>{
+
+    if(item.receiptName){
+
+      receiptNames.push(
+        item.receiptName
+      );
+
     }
 
-    .hero h1 {
-      font-size: 56px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      margin-bottom: 16px;
-      color: #fff;
-    }
 
-    .hero p {
-      color: #94a3b8;
-      font-size: 20px;
-      margin-bottom: 35px;
-    }
+    return (
+      "• " +
+      item.name +
+      " — GYD " +
+      item.price.toLocaleString() +
+      " (ID: " +
+      item.gamerId +
+      ")"
+    );
 
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+  }).join("\n");
 
-    .btn {
-      padding: 14px 36px;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all .3s;
-      text-decoration: none;
-    }
 
-    .btn-glow-blue {
-      background: transparent;
-      color: #38bdf8;
-      border: 1px solid #0284c7;
-      box-shadow: 0 0 18px rgba(2,132,199,.35);
-    }
+  const total =
+    cart.reduce(
+      (sum,item)=>
+        sum + item.price,
+      0
+    );
 
-    .btn-glow-blue:hover {
-      background: #0284c7;
-      color: #fff;
-      box-shadow: 0 0 30px rgba(2,132,199,.7);
-    }
 
-    /* SECTIONS */
-    .section-container {
-      max-width: 1400px;
-      margin: 60px auto;
-      padding: 0 30px;
-    }
+  let messageText =
+    "Hi DARK! I'd like to place an order for multiple items:\n\n" +
 
-    .section-title {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 35px;
-      color: #f1f5f9;
-    }
+    items +
 
-    /* CATEGORIES */
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: 25px;
-    }
+    "\n\n" +
 
-    .cat-card {
-      background: #0b0f17;
-      border-radius: 14px;
-      padding: 30px 25px;
-      text-align: center;
-      transition: all .3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 250px;
-    }
+    "Total: GYD " +
+    total.toLocaleString();
 
-    .cat-card.blue {
-      border: 1px solid rgba(14,165,233,.3);
-      box-shadow: 0 0 15px rgba(14,165,233,.05);
-    }
 
-    .cat-card.blue:hover {
-      border-color: #38bdf8;
-      box-shadow: 0 0 25px rgba(56,189,248,.3);
-      transform: translateY(-5px);
-    }
+  if(receiptNames.length > 0){
 
-    .cat-card.green {
-      border: 1px solid rgba(34,197,94,.3);
-      box-shadow: 0 0 15px rgba(34,197,94,.05);
-    }
+    messageText +=
+      "\n\n📎 Payment Receipt(s):\n" +
+      receiptNames.join("\n") +
+      "\n\n" +
+      "I will send the receipt image(s) directly in this WhatsApp chat.";
 
-    .cat-card.green:hover {
-      border-color: #4ade80;
-      box-shadow: 0 0 25px rgba(74,222,128,.3);
-      transform: translateY(-5px);
-    }
+  }
 
-    .cat-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
-    }
 
-    .cat-card h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #f8fafc;
-    }
+  messageText +=
+    "\n\nPlease send me the payment instructions/confirmation.";
 
-    .cat-card p {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
 
-    /* SLIDERS */
-    .slider-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-    }
+  const message =
+    encodeURIComponent(messageText);
 
-    .slider-controls {
-      display: flex;
-      gap: 12px;
-    }
 
-    .slider-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #fff;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      transition: .2s;
-    }
+  window.open(
+    "https://wa.me/13436555995?text=" +
+    message,
+    "_blank"
+  );
+}
 
-    .slider-btn:hover {
-      background: #0284c7;
-      border-color: #38bdf8;
-    }
 
-    .cards-slider-wrapper {
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      padding: 12px 0;
-    }
+/* =========================
+   INITIAL CART
+========================= */
 
-    .cards-slider-wrapper::-webkit-scrollbar {
-      display: none;
-    }
+updateCart();
 
-    .cards-slider {
-      display: flex;
-      gap: 25px;
-    }
-
-    /* GAME CARDS */
-    .game-card {
-      min-width: 240px;
-     
+  </script>
