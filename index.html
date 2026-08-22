@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=1400, initial-scale=0.3">
   <title>DARK - Digital Entertainment & Gaming Hub</title>
   <style>
     * {
@@ -15,32 +15,32 @@
     body {
       background-color: #05070a;
       color: #e6edf3;
-      overflow-x: hidden;
-      width: 100%;
+      overflow-x: auto;
+      min-width: 1400px;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
+      padding: 18px 60px;
       background: rgba(10, 14, 23, 0.85);
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 100;
       border-bottom: 1px solid #1f293d;
-      width: 100%;
+      min-width: 1400px;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .logo-infinity {
-      font-size: 26px;
+      font-size: 32px;
       background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #00c6ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -48,59 +48,87 @@
     }
 
     .logo-text {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       color: #ffffff;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
     nav {
-      display: none; /* Hidden on mobile, can be expanded for desktop */
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #38bdf8;
     }
 
     .header-actions {
       display: flex;
-      gap: 15px;
+      gap: 25px;
       color: #8b949e;
-      font-size: 14px;
+      font-size: 16px;
       cursor: pointer;
+    }
+
+    .header-actions span:hover {
+      color: #ffffff;
     }
 
     .hero {
       position: relative;
-      padding: 60px 20px;
+      padding: 110px 20px 130px;
       text-align: center;
       background: radial-gradient(circle at center, rgba(14, 116, 144, 0.18) 0%, rgba(5, 7, 10, 1) 75%);
       border-bottom: 1px solid #161e2e;
       overflow: hidden;
     }
 
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+    }
+
     .hero h1 {
-      font-size: 32px;
+      font-size: 56px;
       font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
       color: #ffffff;
     }
 
     .hero p {
       color: #94a3b8;
-      font-size: 15px;
-      margin-bottom: 25px;
+      font-size: 20px;
+      margin-bottom: 35px;
     }
 
     .hero-buttons {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .btn {
-      padding: 12px 24px;
+      padding: 14px 36px;
       border-radius: 30px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 16px;
       cursor: pointer;
       transition: all 0.3s;
       text-decoration: none;
@@ -113,89 +141,123 @@
       box-shadow: 0 0 18px rgba(2, 132, 199, 0.35);
     }
 
+    .btn-glow-blue:hover {
+      background: #0284c7;
+      color: #fff;
+      box-shadow: 0 0 30px rgba(2, 132, 199, 0.7);
+    }
+
     .section-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 15px;
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 30px;
     }
 
     .section-title {
-      font-size: 22px;
+      text-align: center;
+      font-size: 28px;
       font-weight: 800;
-      margin-bottom: 20px;
+      margin-bottom: 35px;
       color: #f1f5f9;
     }
 
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
     }
 
     .cat-card {
       background: #0b0f17;
-      border-radius: 12px;
-      padding: 20px 15px;
+      border-radius: 14px;
+      padding: 30px 25px;
       text-align: center;
+      transition: all 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      min-height: 200px;
+      min-height: 270px;
     }
 
     .cat-card.blue {
       border: 1px solid rgba(14, 165, 233, 0.3);
+      box-shadow: 0 0 15px rgba(14, 165, 233, 0.05);
+    }
+
+    .cat-card.blue:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+      transform: translateY(-5px);
     }
 
     .cat-card.green {
       border: 1px solid rgba(34, 197, 94, 0.3);
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.05);
+    }
+
+    .cat-card.green:hover {
+      border-color: #4ade80;
+      box-shadow: 0 0 25px rgba(74, 222, 128, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .cat-icon {
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: center;
     }
 
     .cat-card h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
+      font-size: 20px;
+      margin-bottom: 10px;
       color: #f8fafc;
     }
 
     .cat-card p {
-      font-size: 12px;
+      font-size: 14px;
       color: #64748b;
-      margin-bottom: 15px;
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
 
     .slider-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 25px;
     }
 
     .slider-controls {
       display: flex;
-      gap: 8px;
+      gap: 12px;
     }
 
     .slider-btn {
       background: #1e293b;
       border: 1px solid #334155;
       color: #fff;
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 18px;
+      transition: 0.2s;
+    }
+
+    .slider-btn:hover {
+      background: #0284c7;
+      border-color: #38bdf8;
     }
 
     .cards-slider-wrapper {
       overflow-x: auto;
       scroll-behavior: smooth;
       scrollbar-width: none;
-      padding: 5px 0;
+      padding: 12px 0;
     }
 
     .cards-slider-wrapper::-webkit-scrollbar {
@@ -204,30 +266,37 @@
 
     .cards-slider {
       display: flex;
-      gap: 15px;
+      gap: 25px;
     }
 
     .game-card {
-      min-width: 180px;
-      max-width: 180px;
+      min-width: 240px;
+      max-width: 240px;
       background: #0d131d;
       border: 1px solid #1e293b;
-      border-radius: 12px;
-      padding: 12px;
+      border-radius: 14px;
+      padding: 18px;
       text-align: center;
+      transition: all 0.3s;
       flex-shrink: 0;
+    }
+
+    .game-card:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+      transform: translateY(-5px);
     }
 
     .game-card .card-media {
       width: 100%;
-      height: 110px;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      height: 140px;
+      border-radius: 10px;
+      margin-bottom: 14px;
       background-color: #1e293b;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .game-card .card-media img {
@@ -237,81 +306,106 @@
     }
 
     .game-card .title {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 700;
       color: #f1f5f9;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .game-card .subtitle {
-      font-size: 11px;
+      font-size: 13px;
       color: #64748b;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .game-card .price {
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 800;
       color: #38bdf8;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .btn-card {
       width: 100%;
-      padding: 8px 0;
+      padding: 10px 0;
       background: #1e293b;
       border: 1px solid #334155;
       color: #38bdf8;
-      border-radius: 6px;
-      font-size: 13px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-card:hover {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
     }
 
     .payment-banner {
       background: linear-gradient(90deg, #0b1320 0%, #111c2e 100%);
       border: 1px solid #1e293b;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 30px 15px;
+      border-radius: 14px;
+      padding: 28px;
+      margin: 50px auto;
+      max-width: 1400px;
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      justify-content: space-around;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .info-box {
       text-align: center;
     }
 
     .info-box span {
       display: block;
-      font-size: 11px;
+      font-size: 13px;
       color: #64748b;
       text-transform: uppercase;
-      margin-bottom: 2px;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
     }
 
     .info-box strong {
-      font-size: 15px;
+      font-size: 18px;
       color: #38bdf8;
     }
 
     .floating-chat {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 25px;
+      right: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
       z-index: 1000;
     }
 
     .chat-btn {
-      background: #25d366;
+      background: #0284c7;
       color: white;
-      padding: 10px 18px;
+      padding: 12px 22px;
       border-radius: 30px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(2, 132, 199, 0.4);
+      cursor: pointer;
+      border: none;
       text-decoration: none;
+    }
+
+    .wa-btn {
+      background: #25d366;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
     }
 
     .modal-overlay {
@@ -326,54 +420,58 @@
       justify-content: center;
       align-items: center;
       z-index: 2000;
-      padding: 20px;
     }
 
     .modal-box {
       background: #0d131d;
       border: 1px solid #1e293b;
-      border-radius: 12px;
-      padding: 20px;
-      width: 100%;
-      max-width: 380px;
+      border-radius: 14px;
+      padding: 30px;
+      width: 90%;
+      max-width: 440px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8);
+      position: relative;
     }
 
     .modal-box h3 {
       color: #ffffff;
-      margin-bottom: 8px;
-      font-size: 18px;
+      margin-bottom: 12px;
+      font-size: 22px;
     }
 
     .modal-box p {
       color: #94a3b8;
-      font-size: 13px;
-      margin-bottom: 15px;
+      font-size: 14px;
+      margin-bottom: 22px;
     }
 
     .modal-box label {
       display: block;
       color: #cbd5e1;
-      font-size: 12px;
-      margin-bottom: 6px;
+      font-size: 13px;
+      margin-bottom: 8px;
       text-align: left;
     }
 
     .modal-box input {
       width: 100%;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
       border: 1px solid #334155;
       background: #05070a;
       color: #fff;
-      font-size: 14px;
-      margin-bottom: 15px;
+      font-size: 15px;
+      margin-bottom: 22px;
       outline: none;
+    }
+
+    .modal-box input:focus {
+      border-color: #38bdf8;
     }
 
     .modal-actions {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       justify-content: flex-end;
     }
 
@@ -381,8 +479,8 @@
       background: #1e293b;
       color: #94a3b8;
       border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
     }
@@ -391,19 +489,20 @@
       background: #25d366;
       color: #fff;
       border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
     }
 
     footer {
       text-align: center;
-      padding: 25px;
+      padding: 35px;
       border-top: 1px solid #161e2e;
       color: #64748b;
-      font-size: 12px;
-      margin-top: 40px;
+      font-size: 14px;
+      margin-top: 60px;
+      min-width: 1400px;
     }
   </style>
 </head>
@@ -415,14 +514,24 @@
       <span class="logo-infinity">∞</span>
       <span class="logo-text">DARK</span>
     </div>
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="#pubg">PUBG UC</a>
+      <a href="#codm">COD CP</a>
+      <a href="#roblox">Roblox</a>
+      <a href="#freefire">Free Fire</a>
+      <a href="#giftcards">Gift Cards</a>
+      <a href="#contact">Contact</a>
+    </nav>
     <div class="header-actions">
-      <span>🔍</span>
-      <span>🛒</span>
+      <span>Search 🔍</span>
+      <span>Cart 🛒</span>
     </div>
   </header>
 
   <!-- HERO SECTION -->
   <section class="hero">
+    <div class="hero-glow"></div>
     <h1>WELCOME TO DARK</h1>
     <p>Your Digital Entertainment & Gaming Hub in Guyana</p>
     <div class="hero-buttons">
@@ -437,18 +546,46 @@
     <div class="categories-grid">
       <div class="cat-card blue">
         <div>
+          <div class="cat-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 11 6 4 11 4 11 11 6 11"/><polygon points="13 11 13 4 18 4 18 11 13 11"/><polygon points="6 20 6 13 11 13 11 20 6 20"/><polygon points="13 20 13 13 18 13 18 20 13 20"/></svg>
+          </div>
           <h3>Gaming UC & CP</h3>
-          <p>PUBG Mobile, COD Mobile, Free Fire</p>
+          <p>PUBG Mobile UC, COD Mobile CP, Free Fire Diamonds</p>
         </div>
         <button class="btn-card" onclick="scrollToSection('pubg')">View Packages</button>
       </div>
 
       <div class="cat-card blue">
         <div>
+          <div class="cat-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+          </div>
           <h3>Roblox</h3>
-          <p>Instant Robux top-ups</p>
+          <p>Instant Robux top-ups for all packages</p>
         </div>
         <button class="btn-card" onclick="scrollToSection('roblox')">View Packages</button>
+      </div>
+
+      <div class="cat-card blue" id="giftcards">
+        <div>
+          <div class="cat-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          </div>
+          <h3>Gift Cards</h3>
+          <p>Apple, PlayStation, Xbox, Steam & More</p>
+        </div>
+        <button class="btn-card" onclick="scrollToSection('giftcards')">View Packages</button>
+      </div>
+
+      <div class="cat-card green">
+        <div>
+          <div class="cat-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </div>
+          <h3>Digital Services</h3>
+          <p>MMG Transfers, Bill Payments & Instant Top-ups</p>
+        </div>
+        <button class="btn-card" style="color:#4ade80; border-color:#22c55e;" onclick="scrollToSection('contact')">MMG Info</button>
       </div>
     </div>
   </div>
@@ -457,7 +594,7 @@
   <div class="payment-banner" id="contact">
     <div class="info-box">
       <span>WhatsApp Contact</span>
-      <strong>+1 (343) 655-5995</strong>
+      <strong>+1 (343) 655-5995 / 700-2769</strong>
     </div>
     <div class="info-box">
       <span>MMG Number</span>
@@ -472,17 +609,17 @@
   <!-- PUBG MOBILE SECTION -->
   <div class="section-container" id="pubg">
     <div class="slider-header">
-      <h2 class="section-title" style="margin:0;">🔥 PUBG Mobile</h2>
+      <h2 class="section-title" style="margin:0; text-align:left;">🔥 PUBG Mobile (UC)</h2>
       <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('pubg-slider', -200)">❮</button>
-        <button class="slider-btn" onclick="slide('pubg-slider', 200)">❯</button>
+        <button class="slider-btn" onclick="slide('pubg-slider', -280)">❮</button>
+        <button class="slider-btn" onclick="slide('pubg-slider', 280)">❯</button>
       </div>
     </div>
     <div class="cards-slider-wrapper" id="pubg-slider">
       <div class="cards-slider">
         <div class="game-card">
           <div class="card-media">
-            <img src="8552.png" alt="PUBG UC">
+            <img src="8552.png" alt="PUBG Mobile UC">
           </div>
           <div class="title">60 UC</div>
           <div class="subtitle">PUBG Mobile</div>
@@ -491,7 +628,7 @@
         </div>
         <div class="game-card">
           <div class="card-media">
-            <img src="8552.png" alt="PUBG UC">
+            <img src="8552.png" alt="PUBG Mobile UC">
           </div>
           <div class="title">325 UC</div>
           <div class="subtitle">PUBG Mobile</div>
@@ -500,12 +637,39 @@
         </div>
         <div class="game-card">
           <div class="card-media">
-            <img src="8552.png" alt="PUBG UC">
+            <img src="8552.png" alt="PUBG Mobile UC">
           </div>
           <div class="title">660 UC</div>
           <div class="subtitle">PUBG Mobile</div>
           <div class="price">$2,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '660 UC', '$2,300 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="8552.png" alt="PUBG Mobile UC">
+          </div>
+          <div class="title">1,800 UC</div>
+          <div class="subtitle">PUBG Mobile</div>
+          <div class="price">$5,500 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '1,800 UC', '$5,500 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="8552.png" alt="PUBG Mobile UC">
+          </div>
+          <div class="title">3,850 UC</div>
+          <div class="subtitle">PUBG Mobile</div>
+          <div class="price">$11,400 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '3,850 UC', '$11,400 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="8552.png" alt="PUBG Mobile UC">
+          </div>
+          <div class="title">8,100 UC</div>
+          <div class="subtitle">PUBG Mobile</div>
+          <div class="price">$21,500 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('PUBG Mobile', '8,100 UC', '$21,500 GYD')">Buy Now</button>
         </div>
       </div>
     </div>
@@ -514,17 +678,17 @@
   <!-- COD MOBILE SECTION -->
   <div class="section-container" id="codm">
     <div class="slider-header">
-      <h2 class="section-title" style="margin:0;">🎯 COD Mobile</h2>
+      <h2 class="section-title" style="margin:0; text-align:left;">🎯 COD Mobile (CP)</h2>
       <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('cod-slider', -200)">❮</button>
-        <button class="slider-btn" onclick="slide('cod-slider', 200)">❯</button>
+        <button class="slider-btn" onclick="slide('cod-slider', -280)">❮</button>
+        <button class="slider-btn" onclick="slide('cod-slider', 280)">❯</button>
       </div>
     </div>
     <div class="cards-slider-wrapper" id="cod-slider">
       <div class="cards-slider">
         <div class="game-card">
           <div class="card-media">
-            <img src="9468.jpg" alt="COD CP">
+            <img src="9468.jpg" alt="COD Mobile CP">
           </div>
           <div class="title">80 CP</div>
           <div class="subtitle">COD Mobile</div>
@@ -533,12 +697,48 @@
         </div>
         <div class="game-card">
           <div class="card-media">
-            <img src="9468.jpg" alt="COD CP">
+            <img src="9468.jpg" alt="COD Mobile CP">
           </div>
           <div class="title">420 CP</div>
           <div class="subtitle">COD Mobile</div>
           <div class="price">$1,300 GYD</div>
           <button class="btn-card" onclick="openOrderModal('COD Mobile', '420 CP', '$1,300 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9468.jpg" alt="COD Mobile CP">
+          </div>
+          <div class="title">880 CP</div>
+          <div class="subtitle">COD Mobile</div>
+          <div class="price">$2,300 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('COD Mobile', '880 CP', '$2,300 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9468.jpg" alt="COD Mobile CP">
+          </div>
+          <div class="title">2,400 CP</div>
+          <div class="subtitle">COD Mobile</div>
+          <div class="price">$5,500 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('COD Mobile', '2,400 CP', '$5,500 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9468.jpg" alt="COD Mobile CP">
+          </div>
+          <div class="title">5,000 CP</div>
+          <div class="subtitle">COD Mobile</div>
+          <div class="price">$11,000 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('COD Mobile', '5,000 CP', '$11,000 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9468.jpg" alt="COD Mobile CP">
+          </div>
+          <div class="title">10,800 CP</div>
+          <div class="subtitle">COD Mobile</div>
+          <div class="price">$21,500 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('COD Mobile', '10,800 CP', '$21,500 GYD')">Buy Now</button>
         </div>
       </div>
     </div>
@@ -547,10 +747,10 @@
   <!-- FREE FIRE SECTION -->
   <div class="section-container" id="freefire">
     <div class="slider-header">
-      <h2 class="section-title" style="margin:0;">💎 Free Fire</h2>
+      <h2 class="section-title" style="margin:0; text-align:left;">💎 Free Fire (Diamonds)</h2>
       <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('ff-slider', -200)">❮</button>
-        <button class="slider-btn" onclick="slide('ff-slider', 200)">❯</button>
+        <button class="slider-btn" onclick="slide('ff-slider', -280)">❮</button>
+        <button class="slider-btn" onclick="slide('ff-slider', 280)">❯</button>
       </div>
     </div>
     <div class="cards-slider-wrapper" id="ff-slider">
@@ -573,6 +773,33 @@
           <div class="price">$600 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Free Fire', '210 Diamonds', '$600 GYD')">Buy Now</button>
         </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9467.webp" alt="Free Fire Diamonds">
+          </div>
+          <div class="title">530 Diamonds</div>
+          <div class="subtitle">Free Fire</div>
+          <div class="price">$1,300 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Free Fire', '530 Diamonds', '$1,300 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9467.webp" alt="Free Fire Diamonds">
+          </div>
+          <div class="title">1,080 Diamonds</div>
+          <div class="subtitle">Free Fire</div>
+          <div class="price">$2,500 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Free Fire', '1,080 Diamonds', '$2,500 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9467.webp" alt="Free Fire Diamonds">
+          </div>
+          <div class="title">2,200 Diamonds</div>
+          <div class="subtitle">Free Fire</div>
+          <div class="price">$5,200 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Free Fire', '2,200 Diamonds', '$5,200 GYD')">Buy Now</button>
+        </div>
       </div>
     </div>
   </div>
@@ -580,10 +807,10 @@
   <!-- ROBLOX SECTION -->
   <div class="section-container" id="roblox">
     <div class="slider-header">
-      <h2 class="section-title" style="margin:0;">🧱 Roblox</h2>
+      <h2 class="section-title" style="margin:0; text-align:left;">🧱 Roblox (Robux)</h2>
       <div class="slider-controls">
-        <button class="slider-btn" onclick="slide('roblox-slider', -200)">❮</button>
-        <button class="slider-btn" onclick="slide('roblox-slider', 200)">❯</button>
+        <button class="slider-btn" onclick="slide('roblox-slider', -280)">❮</button>
+        <button class="slider-btn" onclick="slide('roblox-slider', 280)">❯</button>
       </div>
     </div>
     <div class="cards-slider-wrapper" id="roblox-slider">
@@ -606,14 +833,68 @@
           <div class="price">$600 GYD</div>
           <button class="btn-card" onclick="openOrderModal('Roblox', '80 Robux', '$600 GYD')">Buy Now</button>
         </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9469.jpg" alt="Roblox Robux">
+          </div>
+          <div class="title">500 Robux</div>
+          <div class="subtitle">Roblox</div>
+          <div class="price">$1,300 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Roblox', '500 Robux', '$1,300 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9469.jpg" alt="Roblox Robux">
+          </div>
+          <div class="title">1,000 Robux</div>
+          <div class="subtitle">Roblox</div>
+          <div class="price">$2,300 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Roblox', '1,000 Robux', '$2,300 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9469.jpg" alt="Roblox Robux">
+          </div>
+          <div class="title">2,000 Robux</div>
+          <div class="subtitle">Roblox</div>
+          <div class="price">$4,600 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Roblox', '2,000 Robux', '$4,600 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9469.jpg" alt="Roblox Robux">
+          </div>
+          <div class="title">4,500 Robux</div>
+          <div class="subtitle">Roblox</div>
+          <div class="price">$11,300 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Roblox', '4,500 Robux', '$11,300 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9469.jpg" alt="Roblox Robux">
+          </div>
+          <div class="title">10,000 Robux</div>
+          <div class="subtitle">Roblox</div>
+          <div class="price">$21,500 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Roblox', '10,000 Robux', '$21,500 GYD')">Buy Now</button>
+        </div>
+        <div class="game-card">
+          <div class="card-media">
+            <img src="9469.jpg" alt="Roblox Robux">
+          </div>
+          <div class="title">22,500 Robux</div>
+          <div class="subtitle">Roblox</div>
+          <div class="price">$43,000 GYD</div>
+          <button class="btn-card" onclick="openOrderModal('Roblox', '22,500 Robux', '$43,000 GYD')">Buy Now</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- FLOATING CHAT -->
+  <!-- FLOATING CHAT / WHATSAPP BUTTONS -->
   <div class="floating-chat">
-    <a href="https://wa.me/13436555995" target="_blank" class="chat-btn">
-      💬 WhatsApp
+    <a href="https://wa.me/13436555995" target="_blank" class="chat-btn wa-btn">
+      💬 WhatsApp Support
     </a>
   </div>
 
@@ -621,20 +902,20 @@
   <div class="modal-overlay" id="orderModal">
     <div class="modal-box">
       <h3 id="modalGameTitle">Order Details</h3>
-      <p id="modalPackageDetails">Please provide your details.</p>
+      <p id="modalPackageDetails">Please provide your details to process this order.</p>
       
-      <label for="playerInfo">Player ID / Username:</label>
-      <input type="text" id="playerInfo" placeholder="Enter ID or Username">
+      <label for="playerInfo">Player ID / Username / Email:</label>
+      <input type="text" id="playerInfo" placeholder="e.g. 5123456789 or Username">
 
       <div class="modal-actions">
         <button class="btn-cancel" onclick="closeOrderModal()">Cancel</button>
-        <button class="btn-send-wa" onclick="sendOrderToWhatsApp()">Send 💬</button>
+        <button class="btn-send-wa" onclick="sendOrderToWhatsApp()">Send to WhatsApp 💬</button>
       </div>
     </div>
   </div>
 
   <footer>
-    <p>DARK Hub © 2026 | Guyana</p>
+    <p>DARK Hub © 2026 | Digital Entertainment, Gaming & MMG Services Guyana</p>
   </footer>
 
   <script>
@@ -643,7 +924,11 @@
     let selectedPrice = "";
 
     function slide(sliderId, distance) {
-      document.getElementById(sliderId).scrollBy({ left: distance, behavior: 'smooth' });
+      const slider = document.getElementById(sliderId);
+      slider.scrollBy({
+        left: distance,
+        behavior: 'smooth'
+      });
     }
 
     function scrollToSection(id) {
@@ -667,12 +952,24 @@
 
     function sendOrderToWhatsApp() {
       const playerInfo = document.getElementById('playerInfo').value.trim();
+
       if (!playerInfo) {
         alert('Please enter your Gaming ID or Username!');
         return;
       }
-      const message = `Hello DARK Hub! I want to purchase:\n\n🎮 Game: ${selectedGame}\n📦 Package: ${selectedPackage}\n💰 Price: ${selectedPrice}\n👤 ID: ${playerInfo}`;
-      window.open(`https://wa.me/13436555995?text=${encodeURIComponent(message)}`, '_blank');
+
+      const phoneNumber = "13436555995";
+      const message = `Hello DARK Hub! I would like to purchase:\n\n` +
+                      `🎮 Game: ${selectedGame}\n` +
+                      `📦 Package: ${selectedPackage}\n` +
+                      `💰 Price: ${selectedPrice}\n` +
+                      `👤 ID/Username: ${playerInfo}\n\n` +
+                      `Please send payment instructions.`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+      window.open(whatsappURL, '_blank');
       closeOrderModal();
     }
   </script>
