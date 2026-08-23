@@ -52,6 +52,9 @@
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.2s ease, border-color 0.2s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .card:hover {
@@ -62,7 +65,7 @@
         .card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -97,22 +100,34 @@
             font-weight: 600;
         }
 
-        /* Card Background Themes */
-        .sephora { background: linear-gradient(135deg, #18181b, #dc2626, #000000); }
-        .puma { background: linear-gradient(135deg, #dc2626, #991b1b, #09090b); }
-        .itunes { background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); }
-        .roblox { background: linear-gradient(135deg, #dc2626, #451a03, #09090b); }
-        .twitch { background: linear-gradient(135deg, #7c3aed, #6d28d9, #0f172a); }
-        .steam { background: linear-gradient(135deg, #1e293b, #0284c7, #0f172a); }
-        .rewardble { background: linear-gradient(135deg, #312e81, #4338ca, #0f172a); }
-        .xbox { background: linear-gradient(135deg, #16a34a, #15803d, #052e16); }
-        .wizard101 { background: linear-gradient(135deg, #1e1b4b, #1d4ed8, #0284c7); }
-        .walmart { background: linear-gradient(135deg, #0284c7, #0369a1, #0c4a6e); }
-        .coc { background: linear-gradient(135deg, #7f1d1d, #1e1b4b); }
-        .blockman { background: linear-gradient(135deg, #854d0e, #14532d); }
-        .codm { background: linear-gradient(135deg, #1c1917, #451a03); }
-        .minecraft { background: linear-gradient(135deg, #064e3b, #0f172a); }
-        .wayfair { background: linear-gradient(135deg, #581c87, #1e1b4b); }
+        /* Card Fallback Colors (if image fails to load) */
+        .mobile-legends { background-color: #1e1b4b; }
+        .pubg-new-state { background-color: #0284c7; }
+        .honor-of-kings { background-color: #7c3aed; }
+        .knives-out { background-color: #854d0e; }
+        .genshin-impact { background-color: #0369a1; }
+        .pubg-mobile { background-color: #b45309; }
+        .lord-mobile { background-color: #1d4ed8; }
+        .marvel-rivals { background-color: #be123c; }
+        .lost-light { background-color: #374151; }
+        .once-human { background-color: #111827; }
+        .monopoly { background-color: #15803d; }
+        .ludo-club-cash { background-color: #c026d3; }
+        .sephora { background-color: #18181b; }
+        .puma { background-color: #dc2626; }
+        .itunes { background-color: #ec4899; }
+        .roblox { background-color: #451a03; }
+        .twitch { background-color: #7c3aed; }
+        .steam { background-color: #0284c7; }
+        .rewardble { background-color: #4338ca; }
+        .xbox { background-color: #16a34a; }
+        .wizard101 { background-color: #1d4ed8; }
+        .walmart { background-color: #0369a1; }
+        .coc { background-color: #7f1d1d; }
+        .blockman { background-color: #854d0e; }
+        .codm { background-color: #1c1917; }
+        .minecraft { background-color: #064e3b; }
+        .wayfair { background-color: #581c87; }
 
         /* Modal Styles */
         .modal {
@@ -202,6 +217,115 @@
     </header>
 
     <div class="games-grid">
+
+        <!-- MOBILE LEGENDS -->
+        <div class="card mobile-legends" style="background-image: url('2054b617ac11f24e23d62e05f85303d4.jpg');" onclick="openGame('mobile_legends')">
+            <div class="card-overlay">
+                <span class="category">MOBA</span>
+                <h3>Mobile Legends</h3>
+                <p>Diamonds & Pass <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- PUBG NEW STATE -->
+        <div class="card pubg-new-state" style="background-image: url('277596daca9c403659c4922ea2276384.jpg');" onclick="openGame('pubg_new_state')">
+            <div class="card-overlay">
+                <span class="category">BATTLE ROYALE</span>
+                <h3>PUBG New State</h3>
+                <p>NC Top Up <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- HONOR OF KINGS -->
+        <div class="card honor-of-kings" style="background-image: url('30889662129237c08117a283f796792a.jpg');" onclick="openGame('honor_of_kings')">
+            <div class="card-overlay">
+                <span class="category">MOBA</span>
+                <h3>Honor of Kings</h3>
+                <p>Tokens Top Up <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- KNIVES OUT -->
+        <div class="card knives-out" style="background-image: url('68f84be7fcdb5ced3b5da04b2b4a90d5.jpg');" onclick="openGame('knives_out')">
+            <div class="card-overlay">
+                <span class="category">BATTLE ROYALE</span>
+                <h3>Knives Out</h3>
+                <p>Vouchers Top Up <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- GENSHIN IMPACT -->
+        <div class="card genshin-impact" style="background-image: url('9a3d60d3328f82d901b00440c8150ba5.jpg');" onclick="openGame('genshin_impact')">
+            <div class="card-overlay">
+                <span class="category">RPG</span>
+                <h3>Genshin Impact</h3>
+                <p>Genesis Crystals <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- PUBG MOBILE -->
+        <div class="card pubg-mobile" style="background-image: url('8aaeb884ec72215387696f3613f412a9.jpg');" onclick="openGame('pubg_mobile')">
+            <div class="card-overlay">
+                <span class="category">BATTLE ROYALE</span>
+                <h3>PUBG Mobile</h3>
+                <p>UC Top Up <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- LORD MOBILE -->
+        <div class="card lord-mobile" style="background-image: url('acb1af6e2dd925e8405bbe227ec4d595.jpg');" onclick="openGame('lord_mobile')">
+            <div class="card-overlay">
+                <span class="category">STRATEGY</span>
+                <h3>Lord Mobile</h3>
+                <p>Diamonds & Gems <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- MARVEL RIVALS -->
+        <div class="card marvel-rivals" style="background-image: url('9af12da04796331c7fc1ed690bab41e7.jpg');" onclick="openGame('marvel_rivals')">
+            <div class="card-overlay">
+                <span class="category">ACTION</span>
+                <h3>Marvel Rivals</h3>
+                <p>In-Game Currency <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- LOST LIGHT -->
+        <div class="card lost-light" style="background-image: url('b0beae8e7d647959f95913d0d64b1e18.jpg');" onclick="openGame('lost_light')">
+            <div class="card-overlay">
+                <span class="category">SHOOTER</span>
+                <h3>Lost Light</h3>
+                <p>LP Top Up <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- ONCE HUMAN -->
+        <div class="card once-human" style="background-image: url('e65c57cc6d27f494dde011c3cd264acf.jpg');" onclick="openGame('once_human')">
+            <div class="card-overlay">
+                <span class="category">SURVIVAL</span>
+                <h3>Once Human</h3>
+                <p>Crystgin Packs <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- MONOPOLY -->
+        <div class="card monopoly" style="background-image: url('b34b223b31a1845ea7d77133a92d6fd5.jpg');" onclick="openGame('monopoly')">
+            <div class="card-overlay">
+                <span class="category">BOARD GAME</span>
+                <h3>Monopoly</h3>
+                <p>Dice & Bundles <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
+        <!-- LUDO CLUB CASH -->
+        <div class="card ludo-club-cash" style="background-image: url('e7cac27c9b603b0f66d0ea112cc09d22.jpg');" onclick="openGame('ludo_club_cash')">
+            <div class="card-overlay">
+                <span class="category">CASUAL</span>
+                <h3>Ludo Club Cash</h3>
+                <p>Coins & Cash <span class="tap">Tap to view packages</span></p>
+            </div>
+        </div>
+
         <!-- SEPHORA -->
         <div class="card sephora" onclick="openGame('sephora')">
             <div class="card-overlay">
@@ -336,6 +460,7 @@
                 <p>Gift Cards <span class="tap">Tap to view packages</span></p>
             </div>
         </div>
+
     </div>
 
     <!-- Modal Popup for Packages -->
@@ -352,6 +477,125 @@
 
     <script>
         const games = {
+            mobile_legends: {
+                title: "Mobile Legends",
+                subtitle: "Diamonds & Pass",
+                packages: [
+                    ["86 Diamonds", "$1,200 GYD"],
+                    ["172 Diamonds", "$2,400 GYD"],
+                    ["257 Diamonds", "$3,500 GYD"],
+                    ["706 Diamonds", "$9,000 GYD"],
+                    ["2195 Diamonds", "$27,000 GYD"],
+                    ["Weekly Diamond Pass", "$1,000 GYD"]
+                ]
+            },
+            pubg_new_state: {
+                title: "PUBG New State",
+                subtitle: "NC Top Up",
+                packages: [
+                    ["300+10 NC", "$1,500 GYD"],
+                    ["1500+80 NC", "$6,500 GYD"],
+                    ["3600+300 NC", "$13,000 GYD"],
+                    ["9300+900 NC", "$26,000 GYD"]
+                ]
+            },
+            honor_of_kings: {
+                title: "Honor of Kings",
+                subtitle: "Tokens Top Up",
+                packages: [
+                    ["80 Tokens", "$1,000 GYD"],
+                    ["240 Tokens", "$2,800 GYD"],
+                    ["400 Tokens", "$4,500 GYD"],
+                    ["1200 Tokens", "$13,000 GYD"]
+                ]
+            },
+            knives_out: {
+                title: "Knives Out",
+                subtitle: "Vouchers Top Up",
+                packages: [
+                    ["60 Vouchers", "$1,000 GYD"],
+                    ["300 Vouchers", "$4,000 GYD"],
+                    ["680 Vouchers", "$8,500 GYD"],
+                    ["1280 Vouchers", "$16,000 GYD"]
+                ]
+            },
+            genshin_impact: {
+                title: "Genshin Impact",
+                subtitle: "Genesis Crystals & Blessing",
+                packages: [
+                    ["Blessing of the Welkin Moon", "$3,000 GYD"],
+                    ["60 Genesis Crystals", "$800 GYD"],
+                    ["300 Genesis Crystals", "$3,200 GYD"],
+                    ["980 Genesis Crystals", "$9,500 GYD"],
+                    ["1980 Genesis Crystals", "$18,500 GYD"]
+                ]
+            },
+            pubg_mobile: {
+                title: "PUBG Mobile",
+                subtitle: "UC Top Up",
+                packages: [
+                    ["60 UC", "$800 GYD"],
+                    ["325 UC", "$3,200 GYD"],
+                    ["660 UC", "$6,200 GYD"],
+                    ["1800 UC", "$15,500 GYD"],
+                    ["3850 UC", "$31,000 GYD"]
+                ]
+            },
+            lord_mobile: {
+                title: "Lord Mobile",
+                subtitle: "Diamonds & Gems",
+                packages: [
+                    ["31 Diamonds", "$700 GYD"],
+                    ["155 Diamonds", "$3,000 GYD"],
+                    ["310 Diamonds", "$5,800 GYD"],
+                    ["775 Diamonds", "$14,000 GYD"]
+                ]
+            },
+            marvel_rivals: {
+                title: "Marvel Rivals",
+                subtitle: "In-Game Currency",
+                packages: [
+                    ["Starter Pack", "$1,500 GYD"],
+                    ["Standard Pack", "$4,000 GYD"],
+                    ["Pro Pack", "$8,500 GYD"]
+                ]
+            },
+            lost_light: {
+                title: "Lost Light",
+                subtitle: "LP Top Up",
+                packages: [
+                    ["60 LP", "$1,000 GYD"],
+                    ["300 LP", "$4,200 GYD"],
+                    ["680 LP", "$9,000 GYD"]
+                ]
+            },
+            once_human: {
+                title: "Once Human",
+                subtitle: "Crystgin Packs",
+                packages: [
+                    ["60 Crystgin", "$800 GYD"],
+                    ["300 Crystgin", "$3,500 GYD"],
+                    ["980 Crystgin", "$10,000 GYD"]
+                ]
+            },
+            monopoly: {
+                title: "Monopoly",
+                subtitle: "Dice & Bundles",
+                packages: [
+                    ["Starter Pack", "$1,500 GYD"],
+                    ["Dice Bundle", "$3,500 GYD"],
+                    ["Mega Bundle", "$7,000 GYD"]
+                ]
+            },
+            ludo_club_cash: {
+                title: "Ludo Club Cash",
+                subtitle: "Coins & Cash Packs",
+                packages: [
+                    ["Small Cash Pack", "$800 GYD"],
+                    ["Medium Cash Pack", "$2,000 GYD"],
+                    ["Large Cash Pack", "$5,000 GYD"]
+                ]
+            },
             sephora: {
                 title: "Sephora",
                 subtitle: "Digital Gift Cards",
