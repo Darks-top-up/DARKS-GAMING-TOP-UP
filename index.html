@@ -1,710 +1,957 @@
-<!-- GAMER ID + RECEIPT MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+               maximum-scale=1.0, user-scalable=no">
 
-<div class="modal" id="gamerModal">
+<meta name="theme-color" content="#06133d">
 
-  <h3 id="modalTitle">Enter Gamer Info</h3>
+<title>Yohance Digital Gaming Top Up</title>
 
-  <p id="modalDesc">
-    Enter your Gamer ID or Username and optionally upload your payment receipt.
-  </p>
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-  <label style="
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at top,#102b75 0%,#06133d 35%,#02050d 100%);
+    color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND EFFECTS
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(0,180,255,.04) 45%,
+            transparent 55%
+        );
+    animation:bgMove 8s linear infinite;
+}
+
+@keyframes bgMove{
+    0%{transform:translateX(-30%)}
+    100%{transform:translateX(30%)}
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:relative;
+    padding:22px 15px 18px;
+    text-align:center;
+    background:
+        linear-gradient(135deg,#06133d,#0a2370,#06133d);
+    border-bottom:3px solid #ffe600;
+    box-shadow:0 5px 25px rgba(0,0,0,.5);
+}
+
+.logo{
+    width:82px;
+    height:82px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(135deg,#ffe600,#ff9d00);
+    border:4px solid #fff;
+    box-shadow:
+        0 0 20px rgba(255,230,0,.55);
+    font-size:35px;
+}
+
+.header h1{
+    margin-top:10px;
+    font-size:27px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    text-shadow:0 3px 10px #000;
+}
+
+.header p{
+    margin-top:6px;
+    color:#dce8ff;
+    font-size:14px;
+}
+
+/* =========================
+   TOP NOTICE
+========================= */
+
+.notice{
+    width:calc(100% - 24px);
+    max-width:850px;
+    margin:18px auto;
+    padding:14px;
+    border-radius:14px;
+    text-align:center;
+    background:rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.notice strong{
+    color:#ffe600;
+}
+
+.notice span{
     display:block;
-    font-size:12px;
-    font-weight:800;
-    color:#aeb8c7;
-    margin-bottom:7px;
-  ">
-    Gamer ID / Username
-  </label>
+    margin-top:5px;
+    font-size:13px;
+    color:#c8d4ef;
+}
 
-  <input
-    type="text"
-    id="gamerIdInput"
-    placeholder="e.g. Player123 or ID #12345678"
-  >
+/* =========================
+   GAME GRID
+========================= */
 
-  <label style="
+.container{
+    width:calc(100% - 24px);
+    max-width:1000px;
+    margin:auto;
+    padding-bottom:35px;
+}
+
+.section-title{
+    text-align:center;
+    margin:24px 0 15px;
+    font-size:21px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.section-title::after{
+    content:"";
     display:block;
-    font-size:12px;
-    font-weight:800;
-    color:#aeb8c7;
-    margin-bottom:7px;
-  ">
-    Payment Receipt
-    <span style="color:#788597;font-weight:500;">
-      (Optional)
-    </span>
-  </label>
+    width:70px;
+    height:3px;
+    background:#ffe600;
+    margin:8px auto 0;
+    border-radius:10px;
+}
 
-  <input
-    type="file"
-    id="receiptInput"
-    accept="image/*"
-    style="
-      padding:10px;
-      cursor:pointer;
-    "
-  >
+.games{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+}
 
-  <div style="
+/* =========================
+   GAME CARD
+========================= */
+
+.game-card{
+    position:relative;
+    min-height:175px;
+    border-radius:17px;
+    overflow:hidden;
+    cursor:pointer;
+    background:
+        linear-gradient(145deg,#102b70,#07112d);
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.4);
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.game-card:hover{
+    transform:translateY(-5px);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.65),
+        0 0 20px rgba(0,183,255,.18);
+}
+
+.game-card:active{
+    transform:scale(.97);
+}
+
+.game-art{
+    height:110px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    font-weight:900;
+    text-align:center;
+    padding:10px;
+    text-shadow:0 3px 8px #000;
+}
+
+.hok{
+    background:
+        linear-gradient(135deg,#6b2a14,#d88b28,#102e70);
+}
+
+.monopoly{
+    background:
+        linear-gradient(135deg,#d91f26,#f1c62d,#1879bc);
+}
+
+.lords{
+    background:
+        linear-gradient(135deg,#15546f,#d69b26,#17376d);
+}
+
+.knives{
+    background:
+        linear-gradient(135deg,#333,#8c684e,#202b42);
+}
+
+.newstate{
+    background:
+        linear-gradient(135deg,#111,#00a98d,#cfd5d5);
+}
+
+.game-info{
+    padding:10px;
+    background:rgba(0,0,0,.45);
+}
+
+.game-info h3{
+    font-size:16px;
+    text-transform:uppercase;
+}
+
+.game-info p{
+    margin-top:4px;
     font-size:11px;
-    color:#687586;
-    margin-top:-10px;
-    margin-bottom:18px;
-    line-height:1.5;
-  ">
-    Upload a screenshot/photo of your payment receipt.
-    The receipt image will need to be sent directly in WhatsApp.
-  </div>
+    color:#b9c7e8;
+}
 
-  <div class="modal-actions">
+.tap{
+    float:right;
+    color:#ffe600;
+    font-weight:bold;
+}
 
-    <button
-      class="btn btn-secondary"
-      onclick="closeModal()"
-    >
-      Cancel
-    </button>
+/* =========================
+   PAYMENT / CONTACT AREA
+========================= */
 
-    <button
-      class="btn btn-primary"
-      onclick="confirmAddToCart()"
-    >
-      Add & Order
-    </button>
+.contact-box{
+    margin-top:25px;
+    padding:20px 15px;
+    border-radius:18px;
+    text-align:center;
+    background:
+        linear-gradient(145deg,#062b91,#061746);
+    border:2px solid #ffe600;
+    box-shadow:0 10px 30px rgba(0,0,0,.45);
+}
 
-  </div>
+.contact-box h2{
+    font-size:20px;
+    color:#ffe600;
+}
+
+.contact-box p{
+    margin-top:8px;
+    color:#d9e4ff;
+    font-size:13px;
+}
+
+.contact-buttons{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.contact-btn{
+    padding:11px 17px;
+    border-radius:10px;
+    background:#050505;
+    border:1px solid #ffe600;
+    color:#fff;
+    font-weight:bold;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(7px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:520px;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:20px;
+    background:
+        linear-gradient(160deg,#0c2468,#030817);
+    border:2px solid #ffe600;
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.8);
+    animation:popup .25s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.85);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modal-header{
+    position:sticky;
+    top:0;
+    z-index:2;
+    padding:17px;
+    background:#081b51;
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.modal-header h2{
+    padding-right:35px;
+    color:#ffe600;
+    text-transform:uppercase;
+    font-size:21px;
+}
+
+.modal-header p{
+    margin-top:5px;
+    font-size:12px;
+    color:#bdcae8;
+}
+
+.close{
+    position:absolute;
+    right:13px;
+    top:10px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#e91e23;
+    color:white;
+    font-size:23px;
+    cursor:pointer;
+}
+
+/* =========================
+   PRICE LIST
+========================= */
+
+.prices{
+    padding:15px;
+}
+
+.price-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
+    padding:14px;
+    border-radius:12px;
+    background:
+        linear-gradient(90deg,
+        rgba(255,255,255,.07),
+        rgba(255,255,255,.025));
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.package{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.price{
+    white-space:nowrap;
+    color:#ffe600;
+    font-size:16px;
+    font-weight:900;
+}
+
+.select-btn{
+    width:100%;
+    margin-top:4px;
+    padding:13px;
+    border:0;
+    border-radius:11px;
+    background:#ffe600;
+    color:#06133d;
+    font-weight:900;
+    cursor:pointer;
+    text-transform:uppercase;
+}
+
+.select-btn:active{
+    transform:scale(.98);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    text-align:center;
+    padding:22px 15px;
+    background:#02040a;
+    border-top:1px solid #162657;
+}
+
+.footer h3{
+    color:#ffe600;
+}
+
+.footer p{
+    margin-top:7px;
+    font-size:12px;
+    color:#8493b6;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:700px){
+
+    .header{
+        padding:30px;
+    }
+
+    .header h1{
+        font-size:34px;
+    }
+
+    .games{
+        grid-template-columns:repeat(3,1fr);
+        gap:18px;
+    }
+
+    .game-card{
+        min-height:195px;
+    }
+
+    .game-art{
+        height:125px;
+    }
+
+    .container{
+        width:90%;
+    }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media(max-width:380px){
+
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .game-card{
+        min-height:185px;
+    }
+
+    .header h1{
+        font-size:23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo">🎮</div>
+
+    <h1>Yohance Digital Gaming Top Up</h1>
+
+    <p>Fast • Easy • Reliable Gaming Top Ups</p>
+
+</header>
+
+
+<!-- =========================
+     NOTICE
+========================= -->
+
+<div class="notice">
+    <strong>🎮 CHOOSE YOUR GAME</strong>
+    <span>
+        Tap a game below to view all available top-up packages and prices.
+    </span>
+</div>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+    <h2 class="section-title">Game Top Ups</h2>
+
+    <div class="games">
+
+        <!-- HONOR OF KINGS -->
+
+        <div class="game-card"
+             onclick="openGame('honor')">
+
+            <div class="game-art hok">
+                HONOR<br>OF KINGS
+            </div>
+
+            <div class="game-info">
+                <h3>Honor of Kings</h3>
+                <p>
+                    Tokens & Weekly Packages
+                    <span class="tap">TAP →</span>
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- MONOPOLY GO -->
+
+        <div class="game-card"
+             onclick="openGame('monopoly')">
+
+            <div class="game-art monopoly">
+                MONOPOLY<br>GO!
+            </div>
+
+            <div class="game-info">
+                <h3>Monopoly GO</h3>
+                <p>
+                    Dice Packages
+                    <span class="tap">TAP →</span>
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- LORDS MOBILE -->
+
+        <div class="game-card"
+             onclick="openGame('lords')">
+
+            <div class="game-art lords">
+                LORDS<br>MOBILE
+            </div>
+
+            <div class="game-info">
+                <h3>Lords Mobile</h3>
+                <p>
+                    Diamond Packages
+                    <span class="tap">TAP →</span>
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- KNIVES OUT -->
+
+        <div class="game-card"
+             onclick="openGame('knives')">
+
+            <div class="game-art knives">
+                KNIVES<br>OUT
+            </div>
+
+            <div class="game-info">
+                <h3>Knives Out</h3>
+                <p>
+                    Voucher Packages
+                    <span class="tap">TAP →</span>
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- PUBG NEW STATE -->
+
+        <div class="game-card"
+             onclick="openGame('newstate')">
+
+            <div class="game-art newstate">
+                NEW STATE<br>MOBILE
+            </div>
+
+            <div class="game-info">
+                <h3>PUBG New State</h3>
+                <p>
+                    NC Packages
+                    <span class="tap">TAP →</span>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <div class="contact-box">
+
+        <h2>YOHANCE DIGITAL GAMING</h2>
+
+        <p>
+            Payment and contact details will be added soon.
+        </p>
+
+        <div class="contact-buttons">
+
+            <!-- MMG NUMBER INTENTIONALLY BLANK -->
+
+            <div class="contact-btn">
+                💳 MMG: Coming Soon
+            </div>
+
+            <!-- WHATSAPP INTENTIONALLY BLANK -->
+
+            <div class="contact-btn">
+                💬 WhatsApp: Coming Soon
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     GAME PACKAGE MODAL
+========================= -->
+
+<div class="modal"
+     id="gameModal"
+     onclick="outsideClose(event)">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <button class="close"
+                    onclick="closeGame()">
+                ×
+            </button>
+
+            <h2 id="modalTitle">
+                Game
+            </h2>
+
+            <p id="modalSubtitle">
+                Available packages
+            </p>
+
+        </div>
+
+        <div class="prices"
+             id="priceList">
+        </div>
+
+    </div>
 
 </div>
 
 
-<div class="toast" id="toast"></div>
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <h3>YOHANCE DIGITAL GAMING TOP UP</h3>
+
+    <p>
+        Gaming services • Digital top ups • Gift cards
+    </p>
+
+    <p>
+        © 2026 Yohance Digital Gaming
+    </p>
+
+</footer>
 
 
 <script>
 
-let cart = [];
-let pendingItem = null;
+/* =========================================================
+   GAME DATABASE
+   Add new games here later.
+========================================================= */
 
-const products = document.querySelectorAll(".product");
+const games = {
 
+    honor: {
 
-/* =========================
-   MOBILE MENU
-========================= */
+        title: "Honor of Kings",
 
-function toggleMenu(){
-  document.getElementById("nav").classList.toggle("open");
-}
+        subtitle: "Tokens & Weekly Packages",
 
+        packages: [
 
-/* =========================
-   SEARCH
-========================= */
+            ["80 Tokens", "$400 GYD"],
+            ["240 Tokens", "$1,000 GYD"],
+            ["400 Tokens", "$1,500 GYD"],
+            ["560 Tokens", "$2,000 GYD"],
+            ["830 Tokens", "$3,000 GYD"],
+            ["1,245 Tokens", "$5,000 GYD"],
+            ["4,180 Tokens", "$12,500 GYD"],
+            ["8,360 Tokens", "$25,000 GYD"],
+            ["Weekly Card", "$400 GYD"],
+            ["Weekly Plus", "$1,100 GYD"]
 
-function focusSearch(){
+        ]
 
-  const search = document.getElementById("searchInput");
-
-  document.getElementById("gaming").scrollIntoView({
-    behavior:"smooth"
-  });
-
-  setTimeout(()=>{
-    search.focus();
-  },500);
-}
+    },
 
 
-/* =========================
-   FILTER PRODUCTS
-========================= */
+    monopoly: {
 
-function filterProducts(game,button){
+        title: "Monopoly GO",
 
-  document.querySelectorAll(".filter").forEach(btn=>{
-    btn.classList.remove("active");
-  });
+        subtitle: "Dice Packages",
 
-  button.classList.add("active");
+        packages: [
 
-  products.forEach(product=>{
+            ["30 Dice", "$500 GYD"],
+            ["80 Dice", "$1,600 GYD"],
+            ["180 Dice", "$3,000 GYD"],
+            ["425 Dice", "$6,000 GYD"],
+            ["1,400 Dice", "$13,500 GYD"],
+            ["3,200 Dice", "$26,000 GYD"]
 
-    if(
-      game === "all" ||
-      product.dataset.game === game
-    ){
-      product.style.display = "";
-    }else{
-      product.style.display = "none";
+        ]
+
+    },
+
+
+    lords: {
+
+        title: "Lords Mobile",
+
+        subtitle: "Diamond Packages & Passes",
+
+        packages: [
+
+            ["99 Diamonds", "$400 GYD"],
+            ["199 Diamonds", "$700 GYD"],
+            ["499 Diamonds", "$1,500 GYD"],
+            ["999 Diamonds", "$3,000 GYD"],
+            ["1,999 Diamonds", "$5,500 GYD"],
+            ["4,999 Diamonds", "$13,000 GYD"],
+            ["9,999 Diamonds", "$25,500 GYD"],
+            ["19,999 Diamonds", "$50,000 GYD"],
+            ["49,999 Diamonds", "$125,000 GYD"],
+            ["7-Day Diamonds Pass", "$900 GYD"],
+            ["30-Day Diamonds Pass", "$5,500 GYD"]
+
+        ]
+
+    },
+
+
+    knives: {
+
+        title: "Knives Out",
+
+        subtitle: "Top Up Voucher Packages",
+
+        packages: [
+
+            ["60 + 10 Vouchers", "$400 GYD"],
+            ["180 + 20 Vouchers", "$1,100 GYD"],
+            ["300 + 32 Vouchers", "$1,600 GYD"],
+            ["680 + 72 Vouchers", "$3,200 GYD"],
+            ["1,280 + 180 Vouchers", "$5,500 GYD"],
+            ["1,980 + 290 Vouchers", "$9,000 GYD"],
+            ["3,280 + 515 Vouchers", "$12,500 GYD"],
+            ["6,480 + 1,150 Vouchers", "$25,000 GYD"]
+
+        ]
+
+    },
+
+
+    newstate: {
+
+        title: "PUBG New State Mobile",
+
+        subtitle: "NC Top Up Packages",
+
+        packages: [
+
+            ["300 NC", "$400 GYD"],
+            ["1,580 NC", "$1,600 GYD"],
+            ["3,850 NC", "$3,800 GYD"],
+            ["10,230 NC", "$11,000 GYD"],
+            ["16,800 NC", "$13,500 GYD"],
+            ["35,000 NC", "$25,000 GYD"]
+
+        ]
+
     }
 
-  });
-
-  document.getElementById("searchInput").value = "";
-}
+};
 
 
-/* =========================
-   SEARCH PRODUCTS
-========================= */
+/* =========================================================
+   OPEN GAME
+========================================================= */
 
-function searchProducts(){
+function openGame(gameID){
 
-  const query =
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
+    const game = games[gameID];
 
-  products.forEach(product=>{
-
-    const name =
-      product.dataset.name.toLowerCase();
-
-    product.style.display =
-      name.includes(query) ? "" : "none";
-
-  });
-}
-
-
-/* =========================
-   OPEN GAMER ID MODAL
-========================= */
-
-function promptGamerId(name, price, image){
-
-  pendingItem = {
-    name: name,
-    price: price,
-    image: image
-  };
-
-  document.getElementById("modalTitle").textContent =
-    "Top-up: " + name;
-
-  document.getElementById("gamerIdInput").value = "";
-
-  // Clear previous receipt
-  document.getElementById("receiptInput").value = "";
-
-  document
-    .getElementById("gamerModal")
-    .classList.add("open");
-
-  document
-    .getElementById("modalOverlay")
-    .classList.add("open");
-
-  setTimeout(()=>{
-
-    document
-      .getElementById("gamerIdInput")
-      .focus();
-
-  },100);
-}
-
-
-/* =========================
-   CLOSE MODAL
-========================= */
-
-function closeModal(){
-
-  document
-    .getElementById("gamerModal")
-    .classList.remove("open");
-
-  document
-    .getElementById("modalOverlay")
-    .classList.remove("open");
-
-  pendingItem = null;
-}
-
-
-/* =========================
-   CONFIRM ORDER
-========================= */
-
-function confirmAddToCart(){
-
-  if(!pendingItem){
-
-    showToast("Please select a package first.");
-
-    return;
-  }
-
-  const gamerId =
-    document
-      .getElementById("gamerIdInput")
-      .value
-      .trim();
-
-  const fileInput =
-    document.getElementById("receiptInput");
-
-  const file =
-    fileInput.files[0];
-
-
-  /* Gamer ID required */
-
-  if(!gamerId){
-
-    showToast(
-      "Please enter your Gamer ID or Username!"
-    );
-
-    return;
-  }
-
-
-  /*
-    If receipt was uploaded,
-    convert it to Data URL.
-  */
-
-  if(file){
-
-    // Only allow images
-    if(!file.type.startsWith("image/")){
-
-      showToast(
-        "Please upload an image receipt."
-      );
-
-      return;
+    if(!game){
+        return;
     }
 
+    document.getElementById("modalTitle").textContent =
+        game.title;
 
-    const reader = new FileReader();
+    document.getElementById("modalSubtitle").textContent =
+        game.subtitle;
 
+    const priceList =
+        document.getElementById("priceList");
 
-    reader.onload = function(e){
+    priceList.innerHTML = "";
 
-      saveAndOrder(
-        gamerId,
-        e.target.result,
-        file.name
-      );
+    game.packages.forEach(function(item){
 
-    };
+        const row =
+            document.createElement("div");
 
+        row.className = "price-item";
 
-    reader.onerror = function(){
+        row.innerHTML = `
 
-      showToast(
-        "Could not read the receipt image."
-      );
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-
-  }else{
-
-    // No receipt uploaded
-
-    saveAndOrder(
-      gamerId,
-      null,
-      null
-    );
-
-  }
-}
-
-
-/* =========================
-   SAVE ITEM + ORDER
-========================= */
-
-function saveAndOrder(
-  gamerId,
-  receiptDataUrl,
-  fileName
-){
-
-  if(!pendingItem){
-
-    showToast("Something went wrong.");
-
-    return;
-  }
-
-
-  const newItem = {
-
-    name: pendingItem.name,
-
-    price: pendingItem.price,
-
-    image: pendingItem.image,
-
-    gamerId: gamerId,
-
-    receipt: receiptDataUrl,
-
-    receiptName: fileName
-
-  };
-
-
-  cart.push(newItem);
-
-
-  closeModal();
-
-
-  updateCart();
-
-
-  showToast(
-    "Added to cart ✓"
-  );
-
-
-  /*
-    Automatically open WhatsApp
-    for the newly selected item.
-  */
-
-  sendWhatsAppOrder(newItem);
-}
-
-
-/* =========================
-   REMOVE FROM CART
-========================= */
-
-function removeFromCart(index){
-
-  cart.splice(index,1);
-
-  updateCart();
-}
-
-
-/* =========================
-   UPDATE CART
-========================= */
-
-function updateCart(){
-
-  const container =
-    document.getElementById("cartItems");
-
-  const count =
-    document.getElementById("cartCount");
-
-  const total =
-    document.getElementById("cartTotal");
-
-
-  count.textContent =
-    cart.length;
-
-
-  if(cart.length === 0){
-
-    container.innerHTML =
-      '<div class="empty">Your cart is empty.</div>';
-
-    total.textContent =
-      "GYD 0";
-
-    return;
-  }
-
-
-  let sum = 0;
-
-
-  container.innerHTML =
-    cart.map((item,index)=>{
-
-      sum += item.price;
-
-
-      const hasReceipt =
-        item.receiptName
-        ?
-        `
-        <div style="
-          font-size:10px;
-          color:#00ff95;
-          margin-top:3px;
-          font-weight:800;
-        ">
-          Receipt Attached ✓
-        </div>
-        `
-        :
-        "";
-
-
-      return `
-
-        <div class="cart-item">
-
-          <img
-            src="${item.image}"
-            alt="${item.name}"
-          >
-
-          <div>
-
-            <h4>
-              ${item.name}
-            </h4>
-
-            <div class="cart-uid">
-              ID: ${item.gamerId}
+            <div class="package">
+                ${item[0]}
             </div>
 
-            ${hasReceipt}
+            <div class="price">
+                ${item[1]}
+            </div>
 
-            <p>
-              GYD ${item.price.toLocaleString()}
-            </p>
+        `;
 
-          </div>
+        priceList.appendChild(row);
 
-          <button
-            class="remove"
-            onclick="removeFromCart(${index})"
-          >
-            ✕
-          </button>
+    });
 
-        </div>
+    document
+        .getElementById("gameModal")
+        .classList.add("show");
 
-      `;
-
-    }).join("");
-
-
-  total.textContent =
-    "GYD " + sum.toLocaleString();
+    document.body.style.overflow = "hidden";
 }
 
 
-/* =========================
-   OPEN CART
-========================= */
+/* =========================================================
+   CLOSE GAME
+========================================================= */
 
-function openCart(){
+function closeGame(){
 
-  document
-    .getElementById("cart")
-    .classList.add("open");
+    document
+        .getElementById("gameModal")
+        .classList.remove("show");
 
-  document
-    .getElementById("cartOverlay")
-    .classList.add("open");
+    document.body.style.overflow = "";
 }
 
 
-/* =========================
-   CLOSE CART
-========================= */
+/* =========================================================
+   CLOSE WHEN CLICKING OUTSIDE
+========================================================= */
 
-function closeCart(){
+function outsideClose(event){
 
-  document
-    .getElementById("cart")
-    .classList.remove("open");
+    if(event.target.id === "gameModal"){
 
-  document
-    .getElementById("cartOverlay")
-    .classList.remove("open");
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-function showToast(message){
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent =
-    message;
-
-  toast.classList.add("show");
-
-
-  setTimeout(()=>{
-
-    toast.classList.remove("show");
-
-  },2000);
-}
-
-
-/* =========================
-   WHATSAPP SINGLE ORDER
-========================= */
-
-function sendWhatsAppOrder(item){
-
-  let messageText =
-    "Hi DARK! I'd like to place an order:\n\n" +
-
-    "• " +
-    item.name +
-    " — GYD " +
-    item.price.toLocaleString() +
-    "\n" +
-
-    "👤 Gamer ID / Username: " +
-    item.gamerId +
-    "\n";
-
-
-  /*
-    If receipt exists,
-    include receipt filename.
-  */
-
-  if(item.receiptName){
-
-    messageText +=
-      "📎 Payment Receipt Attached: " +
-      item.receiptName +
-      "\n" +
-
-      "I will send the receipt image directly in this chat.\n";
-  }
-
-
-  messageText +=
-    "\n" +
-
-    "Total: GYD " +
-    item.price.toLocaleString() +
-
-    "\n\n" +
-
-    "Please send me the payment instructions/confirmation.";
-
-
-  const message =
-    encodeURIComponent(messageText);
-
-
-  window.open(
-    "https://wa.me/13436555995?text=" +
-    message,
-    "_blank"
-  );
-}
-
-
-/* =========================
-   CHECKOUT MULTIPLE ITEMS
-========================= */
-
-function checkout(){
-
-  if(cart.length === 0){
-
-    showToast(
-      "Your cart is empty."
-    );
-
-    return;
-  }
-
-
-  let receiptNames = [];
-
-
-  const items = cart.map(item=>{
-
-    if(item.receiptName){
-
-      receiptNames.push(
-        item.receiptName
-      );
+        closeGame();
 
     }
 
-
-    return (
-      "• " +
-      item.name +
-      " — GYD " +
-      item.price.toLocaleString() +
-      " (ID: " +
-      item.gamerId +
-      ")"
-    );
-
-  }).join("\n");
-
-
-  const total =
-    cart.reduce(
-      (sum,item)=>
-        sum + item.price,
-      0
-    );
-
-
-  let messageText =
-    "Hi DARK! I'd like to place an order for multiple items:\n\n" +
-
-    items +
-
-    "\n\n" +
-
-    "Total: GYD " +
-    total.toLocaleString();
-
-
-  if(receiptNames.length > 0){
-
-    messageText +=
-      "\n\n📎 Payment Receipt(s):\n" +
-      receiptNames.join("\n") +
-      "\n\n" +
-      "I will send the receipt image(s) directly in this WhatsApp chat.";
-
-  }
-
-
-  messageText +=
-    "\n\nPlease send me the payment instructions/confirmation.";
-
-
-  const message =
-    encodeURIComponent(messageText);
-
-
-  window.open(
-    "https://wa.me/13436555995?text=" +
-    message,
-    "_blank"
-  );
 }
 
 
-/* =========================
-   INITIAL CART
-========================= */
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
 
-updateCart();
+document.addEventListener(
+    "keydown",
+    function(event){
 
-  </script>
+        if(event.key === "Escape"){
+
+            closeGame();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
