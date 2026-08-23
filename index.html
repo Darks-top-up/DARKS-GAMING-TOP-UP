@@ -3,133 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yohance Topup Service</title>
+    <title>YOHANCE - Digital Entertainment & Gaming Hub</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
-            background-color: #0a0a0c;
+            background-color: #050508;
             color: #ffffff;
-            padding: 20px 10px;
+            line-height: 1.5;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            color: #ef4444;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        header p {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .card {
-            position: relative;
-            height: 180px;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(239, 68, 68, 0.5);
-        }
-
-        .card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 14px;
-        }
-
-        .category {
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: #ef4444;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .card h3 {
-            margin: 2px 0 4px 0;
-            font-size: 1.1rem;
-            color: #ffffff;
-        }
-
-        .card p {
-            margin: 0;
-            font-size: 0.75rem;
-            color: #9ca3af;
+        /* Navbar */
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 5%;
+            background: rgba(10, 10, 15, 0.95);
+            border-bottom: 1px solid rgba(0, 195, 255, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .tap {
-            color: #ef4444;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+        }
+
+        .logo-icon {
+            color: #00c3ff;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #00c3ff;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, rgba(0, 195, 255, 0.08) 0%, rgba(5, 5, 8, 1) 70%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            color: #9ca3af;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 20px;
+            border: 1px solid #00c3ff;
+            background: transparent;
+            color: #00c3ff;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        /* Card Fallback Colors (if image fails to load) */
-        .mobile-legends { background-color: #1e1b4b; }
-        .pubg-new-state { background-color: #0284c7; }
-        .honor-of-kings { background-color: #7c3aed; }
-        .knives-out { background-color: #854d0e; }
-        .genshin-impact { background-color: #0369a1; }
-        .pubg-mobile { background-color: #b45309; }
-        .lord-mobile { background-color: #1d4ed8; }
-        .marvel-rivals { background-color: #be123c; }
-        .lost-light { background-color: #374151; }
-        .once-human { background-color: #111827; }
-        .monopoly { background-color: #15803d; }
-        .ludo-club-cash { background-color: #c026d3; }
-        .sephora { background-color: #18181b; }
-        .puma { background-color: #dc2626; }
-        .itunes { background-color: #ec4899; }
-        .roblox { background-color: #451a03; }
-        .twitch { background-color: #7c3aed; }
-        .steam { background-color: #0284c7; }
-        .rewardble { background-color: #4338ca; }
-        .xbox { background-color: #16a34a; }
-        .wizard101 { background-color: #1d4ed8; }
-        .walmart { background-color: #0369a1; }
-        .coc { background-color: #7f1d1d; }
-        .blockman { background-color: #854d0e; }
-        .codm { background-color: #1c1917; }
-        .minecraft { background-color: #064e3b; }
-        .wayfair { background-color: #581c87; }
+        .btn:hover {
+            background: #00c3ff;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.5);
+        }
 
-        /* Modal Styles */
+        /* Section Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        /* Main Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background: #0b0d14;
+            border: 1px solid #00c3ff;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 195, 255, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .category-card.green {
+            border-color: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.3);
+        }
+
+        .category-card.green:hover {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .category-card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .category-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .category-card p {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 15px;
+        }
+
+        .category-card .btn-sm {
+            padding: 6px 16px;
+            font-size: 0.8rem;
+        }
+
+        /* Card Displays (Gaming & Gift Cards) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: #0f111a;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 15px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .product-card .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 12px 0 8px 0;
+        }
+
+        /* Modal Popup */
         .modal {
             display: none;
             position: fixed;
@@ -143,670 +228,242 @@
         }
 
         .modal-content {
-            background: #121318;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+            background: #0b0d14;
+            border: 1px solid #00c3ff;
+            border-radius: 12px;
             width: 100%;
-            max-width: 450px;
-            max-height: 80vh;
-            overflow-y: auto;
+            max-width: 420px;
             padding: 20px;
             position: relative;
         }
 
         .close-btn {
             position: absolute;
-            top: 15px;
+            top: 10px;
             right: 15px;
-            background: transparent;
+            background: none;
             border: none;
-            color: #9ca3af;
+            color: #fff;
             font-size: 1.5rem;
             cursor: pointer;
-        }
-
-        .modal-header h2 {
-            font-size: 1.4rem;
-            color: #fff;
-        }
-
-        .modal-header p {
-            font-size: 0.85rem;
-            color: #ef4444;
-            margin-bottom: 15px;
-        }
-
-        .package-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
         }
 
         .package-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            background: #1a1c23;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            background: #141722;
+            margin-top: 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
         }
 
-        .package-item .item-name {
-            font-weight: 600;
-            color: #f3f4f6;
-        }
-
-        .package-item .item-price {
-            color: #22c55e;
+        .package-item .price {
+            color: #10b981;
             font-weight: 700;
         }
 
-        @media (max-width: 600px) {
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 20px;
+            background: #030305;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: #fff;
+            border-radius: 30px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 99;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Yohance Topup</h1>
-        <p>Gaming Services & Gift Cards</p>
-    </header>
+    <!-- Navigation Header -->
+    <nav>
+        <div class="logo">
+            <span class="logo-icon">∞</span> YOHANCE
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#gaming">Gaming</a></li>
+            <li><a href="#giftcards">Gift Cards</a></li>
+            <li><a href="#categories">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <span>Search 🔍</span>
+            <span>Cart 🛒</span>
+        </div>
+    </nav>
 
-    <div class="games-grid">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>WELCOME TO YOHANCE</h1>
+        <p>Your Digital Entertainment & Gaming Hub</p>
+        <div class="hero-btns">
+            <a href="#gaming" class="btn">Browse Products</a>
+            <a href="#giftcards" class="btn">View Deals</a>
+        </div>
+    </section>
 
-        <!-- MOBILE LEGENDS -->
-        <div class="card mobile-legends" style="background-image: url('2054b617ac11f24e23d62e05f85303d4.jpg');" onclick="openGame('mobile_legends')">
-            <div class="card-overlay">
-                <span class="category">MOBA</span>
-                <h3>Mobile Legends</h3>
-                <p>Diamonds & Pass <span class="tap">Tap to view packages</span></p>
+    <div class="container">
+        
+        <!-- Main Categories -->
+        <h2 class="section-title" id="categories">Main Categories</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="icon">🎬</div>
+                <h3>Movies & TV</h3>
+                <p>Streaming account rentals, weekly and monthly options</p>
+                <a href="#gaming" class="btn btn-sm">View Options</a>
+            </div>
+            <div class="category-card">
+                <div class="icon">🎮</div>
+                <h3>Gaming</h3>
+                <p>PUBG Mobile UC, Free Fire, Roblox, Xbox, Steam, etc.</p>
+                <a href="#gaming" class="btn btn-sm">View Deals</a>
+            </div>
+            <div class="category-card">
+                <div class="icon">🎁</div>
+                <h3>Gift Cards</h3>
+                <p>Roblox, Xbox, Steam, Apple, iTunes, etc.</p>
+                <a href="#giftcards" class="btn btn-sm">View Cards</a>
+            </div>
+            <div class="category-card green">
+                <div class="icon">💳</div>
+                <h3>Digital Services</h3>
+                <p>MMO, bill payments, mobile data, top-ups, etc.</p>
+                <a href="#contact" class="btn btn-sm" style="border-color:#10b981; color:#10b981;">Order Service</a>
             </div>
         </div>
 
-        <!-- PUBG NEW STATE -->
-        <div class="card pubg-new-state" style="background-image: url('277596daca9c403659c4922ea2276384.jpg');" onclick="openGame('pubg_new_state')">
-            <div class="card-overlay">
-                <span class="category">BATTLE ROYALE</span>
-                <h3>PUBG New State</h3>
-                <p>NC Top Up <span class="tap">Tap to view packages</span></p>
+        <!-- Gaming Section -->
+        <h2 class="section-title" id="gaming">🔥 Gaming Top-Ups</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <img src="8aaeb884ec72215387696f3613f412a9.jpg" alt="PUBG Mobile">
+                <div class="card-title">PUBG Mobile</div>
+                <button class="btn btn-sm" onclick="openModal('PUBG Mobile', [['60 UC', '$800 GYD'], ['325 UC', '$3,200 GYD'], ['660 UC', '$6,200 GYD']])">View Packages</button>
             </div>
+
+            <div class="product-card">
+                <img src="2054b617ac11f24e23d62e05f85303d4.jpg" alt="Mobile Legends">
+                <div class="card-title">Mobile Legends</div>
+                <button class="btn btn-sm" onclick="openModal('Mobile Legends', [['86 Diamonds', '$1,200 GYD'], ['172 Diamonds', '$2,400 GYD'], ['Weekly Pass', '$1,000 GYD']])">View Packages</button>
+            </div>
+
+            <div class="product-card">
+                <img src="9a3d60d3328f82d901b00440c8150ba5.jpg" alt="Genshin Impact">
+                <div class="card-title">Genshin Impact</div>
+                <button class="btn btn-sm" onclick="openModal('Genshin Impact', [['Welkin Moon', '$3,000 GYD'], ['300 Crystals', '$3,200 GYD']])">View Packages</button>
+            </div>
+
+            <div class="product-card">
+                <img src="30889662129237c08117a283f796792a.jpg" alt="Honor of Kings">
+                <div class="card-title">Honor of Kings</div>
+                <button class="btn btn-sm" onclick="openModal('Honor of Kings', [['80 Tokens', '$1,000 GYD'], ['240 Tokens', '$2,800 GYD']])">View Packages</button>
+            </div>
+
         </div>
 
-        <!-- HONOR OF KINGS -->
-        <div class="card honor-of-kings" style="background-image: url('30889662129237c08117a283f796792a.jpg');" onclick="openGame('honor_of_kings')">
-            <div class="card-overlay">
-                <span class="category">MOBA</span>
-                <h3>Honor of Kings</h3>
-                <p>Tokens Top Up <span class="tap">Tap to view packages</span></p>
+        <!-- Gift Cards Section -->
+        <h2 class="section-title" id="giftcards">💳 Gift Cards</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div style="font-size: 3rem; margin-top:20px;">🤖</div>
+                <div class="card-title">Roblox</div>
+                <button class="btn btn-sm" onclick="openModal('Roblox', [['$10 USD', '$3,000 GYD'], ['$25 USD', '$7,500 GYD']])">Add To Cart</button>
             </div>
-        </div>
 
-        <!-- KNIVES OUT -->
-        <div class="card knives-out" style="background-image: url('68f84be7fcdb5ced3b5da04b2b4a90d5.jpg');" onclick="openGame('knives_out')">
-            <div class="card-overlay">
-                <span class="category">BATTLE ROYALE</span>
-                <h3>Knives Out</h3>
-                <p>Vouchers Top Up <span class="tap">Tap to view packages</span></p>
+            <div class="product-card">
+                <div style="font-size: 3rem; margin-top:20px;">🎮</div>
+                <div class="card-title">Xbox Gift Card</div>
+                <button class="btn btn-sm" onclick="openModal('Xbox', [['$10 USD', '$3,000 GYD'], ['$25 USD', '$6,500 GYD']])">Add To Cart</button>
             </div>
-        </div>
 
-        <!-- GENSHIN IMPACT -->
-        <div class="card genshin-impact" style="background-image: url('9a3d60d3328f82d901b00440c8150ba5.jpg');" onclick="openGame('genshin_impact')">
-            <div class="card-overlay">
-                <span class="category">RPG</span>
-                <h3>Genshin Impact</h3>
-                <p>Genesis Crystals <span class="tap">Tap to view packages</span></p>
+            <div class="product-card">
+                <div style="font-size: 3rem; margin-top:20px;">⚙️</div>
+                <div class="card-title">Steam Card</div>
+                <button class="btn btn-sm" onclick="openModal('Steam', [['$10 USD', '$3,000 GYD'], ['$20 USD', '$5,500 GYD']])">Add To Cart</button>
             </div>
-        </div>
 
-        <!-- PUBG MOBILE -->
-        <div class="card pubg-mobile" style="background-image: url('8aaeb884ec72215387696f3613f412a9.jpg');" onclick="openGame('pubg_mobile')">
-            <div class="card-overlay">
-                <span class="category">BATTLE ROYALE</span>
-                <h3>PUBG Mobile</h3>
-                <p>UC Top Up <span class="tap">Tap to view packages</span></p>
+            <div class="product-card">
+                <div style="font-size: 3rem; margin-top:20px;">🍎</div>
+                <div class="card-title">Apple / iTunes</div>
+                <button class="btn btn-sm" onclick="openModal('iTunes', [['$5 USD', '$1,500 GYD'], ['$10 USD', '$3,000 GYD']])">Add To Cart</button>
             </div>
-        </div>
 
-        <!-- LORD MOBILE -->
-        <div class="card lord-mobile" style="background-image: url('acb1af6e2dd925e8405bbe227ec4d595.jpg');" onclick="openGame('lord_mobile')">
-            <div class="card-overlay">
-                <span class="category">STRATEGY</span>
-                <h3>Lord Mobile</h3>
-                <p>Diamonds & Gems <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- MARVEL RIVALS -->
-        <div class="card marvel-rivals" style="background-image: url('9af12da04796331c7fc1ed690bab41e7.jpg');" onclick="openGame('marvel_rivals')">
-            <div class="card-overlay">
-                <span class="category">ACTION</span>
-                <h3>Marvel Rivals</h3>
-                <p>In-Game Currency <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- LOST LIGHT -->
-        <div class="card lost-light" style="background-image: url('b0beae8e7d647959f95913d0d64b1e18.jpg');" onclick="openGame('lost_light')">
-            <div class="card-overlay">
-                <span class="category">SHOOTER</span>
-                <h3>Lost Light</h3>
-                <p>LP Top Up <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- ONCE HUMAN -->
-        <div class="card once-human" style="background-image: url('e65c57cc6d27f494dde011c3cd264acf.jpg');" onclick="openGame('once_human')">
-            <div class="card-overlay">
-                <span class="category">SURVIVAL</span>
-                <h3>Once Human</h3>
-                <p>Crystgin Packs <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- MONOPOLY -->
-        <div class="card monopoly" style="background-image: url('b34b223b31a1845ea7d77133a92d6fd5.jpg');" onclick="openGame('monopoly')">
-            <div class="card-overlay">
-                <span class="category">BOARD GAME</span>
-                <h3>Monopoly</h3>
-                <p>Dice & Bundles <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- LUDO CLUB CASH -->
-        <div class="card ludo-club-cash" style="background-image: url('e7cac27c9b603b0f66d0ea112cc09d22.jpg');" onclick="openGame('ludo_club_cash')">
-            <div class="card-overlay">
-                <span class="category">CASUAL</span>
-                <h3>Ludo Club Cash</h3>
-                <p>Coins & Cash <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- SEPHORA -->
-        <div class="card sephora" onclick="openGame('sephora')">
-            <div class="card-overlay">
-                <span class="category">BEAUTY</span>
-                <h3>Sephora</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- PUMA -->
-        <div class="card puma" onclick="openGame('puma')">
-            <div class="card-overlay">
-                <span class="category">APPAREL</span>
-                <h3>Puma</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- ITUNES -->
-        <div class="card itunes" onclick="openGame('itunes')">
-            <div class="card-overlay">
-                <span class="category">APPLE</span>
-                <h3>iTunes / Apple</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- ROBLOX -->
-        <div class="card roblox" onclick="openGame('roblox')">
-            <div class="card-overlay">
-                <span class="category">GAMING</span>
-                <h3>Roblox</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- TWITCH -->
-        <div class="card twitch" onclick="openGame('twitch')">
-            <div class="card-overlay">
-                <span class="category">STREAMING</span>
-                <h3>Twitch</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- STEAM -->
-        <div class="card steam" onclick="openGame('steam')">
-            <div class="card-overlay">
-                <span class="category">PC GAMING</span>
-                <h3>Steam</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- REWARDLE -->
-        <div class="card rewardble" onclick="openGame('rewardble')">
-            <div class="card-overlay">
-                <span class="category">REWARDS</span>
-                <h3>Rewardble</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- XBOX -->
-        <div class="card xbox" onclick="openGame('xbox')">
-            <div class="card-overlay">
-                <span class="category">MICROSOFT</span>
-                <h3>Xbox</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- WIZARD 101 -->
-        <div class="card wizard101" onclick="openGame('wizard101')">
-            <div class="card-overlay">
-                <span class="category">KINGSISLE</span>
-                <h3>Wizard 101</h3>
-                <p>KingsIsle Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- WALMART -->
-        <div class="card walmart" onclick="openGame('walmart')">
-            <div class="card-overlay">
-                <span class="category">SHOPPING</span>
-                <h3>Walmart</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- CLASH OF CLANS -->
-        <div class="card coc" onclick="openGame('coc')">
-            <div class="card-overlay">
-                <span class="category">SUPERCELL</span>
-                <h3>Clash of Clans</h3>
-                <p>Gems & Passes <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- BLOCKMAN GO -->
-        <div class="card blockman" onclick="openGame('blockman')">
-            <div class="card-overlay">
-                <span class="category">BLOCKMAN GO</span>
-                <h3>BlockMan GO!</h3>
-                <p>GCubes & Subscriptions <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- CALL OF DUTY MOBILE -->
-        <div class="card codm" onclick="openGame('codm')">
-            <div class="card-overlay">
-                <span class="category">CALL OF DUTY</span>
-                <h3>Call Of Duty Mobile</h3>
-                <p>CP Points <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- MINECRAFT -->
-        <div class="card minecraft" onclick="openGame('minecraft')">
-            <div class="card-overlay">
-                <span class="category">MOJANG</span>
-                <h3>Minecraft</h3>
-                <p>Minecoins & Java <span class="tap">Tap to view packages</span></p>
-            </div>
-        </div>
-
-        <!-- WAYFAIR -->
-        <div class="card wayfair" onclick="openGame('wayfair')">
-            <div class="card-overlay">
-                <span class="category">HOME & FURNITURE</span>
-                <h3>Wayfair</h3>
-                <p>Gift Cards <span class="tap">Tap to view packages</span></p>
-            </div>
         </div>
 
     </div>
 
-    <!-- Modal Popup for Packages -->
+    <!-- Modal Popup -->
     <div id="modal" class="modal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-content">
             <button class="close-btn" onclick="closeModalDirect()">&times;</button>
-            <div class="modal-header">
-                <h2 id="modal-title"></h2>
-                <p id="modal-subtitle"></p>
-            </div>
-            <div id="package-list" class="package-list"></div>
+            <h3 id="modal-title" style="margin-bottom:15px; color:#00c3ff;"></h3>
+            <div id="modal-packages"></div>
         </div>
     </div>
+
+    <!-- Floating WhatsApp Action -->
+    <a href="https://wa.me/" target="_blank" class="whatsapp-float">
+        💬 WhatsApp Support
+    </a>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p style="color:#fff; font-weight:700; margin-bottom:5px;">YOHANCE</p>
+        <p>Digital Entertainment • Gaming • Gift Cards • Digital Services</p>
+        <p style="margin-top:15px;">
+            <a href="#">About</a> | 
+            <a href="#">FAQ</a> | 
+            <a href="#">Contact</a> | 
+            <a href="#">Privacy Policy</a>
+        </p>
+    </footer>
 
     <script>
-        const games = {
-            mobile_legends: {
-                title: "Mobile Legends",
-                subtitle: "Diamonds & Pass",
-                packages: [
-                    ["86 Diamonds", "$1,200 GYD"],
-                    ["172 Diamonds", "$2,400 GYD"],
-                    ["257 Diamonds", "$3,500 GYD"],
-                    ["706 Diamonds", "$9,000 GYD"],
-                    ["2195 Diamonds", "$27,000 GYD"],
-                    ["Weekly Diamond Pass", "$1,000 GYD"]
-                ]
-            },
-            pubg_new_state: {
-                title: "PUBG New State",
-                subtitle: "NC Top Up",
-                packages: [
-                    ["300+10 NC", "$1,500 GYD"],
-                    ["1500+80 NC", "$6,500 GYD"],
-                    ["3600+300 NC", "$13,000 GYD"],
-                    ["9300+900 NC", "$26,000 GYD"]
-                ]
-            },
-            honor_of_kings: {
-                title: "Honor of Kings",
-                subtitle: "Tokens Top Up",
-                packages: [
-                    ["80 Tokens", "$1,000 GYD"],
-                    ["240 Tokens", "$2,800 GYD"],
-                    ["400 Tokens", "$4,500 GYD"],
-                    ["1200 Tokens", "$13,000 GYD"]
-                ]
-            },
-            knives_out: {
-                title: "Knives Out",
-                subtitle: "Vouchers Top Up",
-                packages: [
-                    ["60 Vouchers", "$1,000 GYD"],
-                    ["300 Vouchers", "$4,000 GYD"],
-                    ["680 Vouchers", "$8,500 GYD"],
-                    ["1280 Vouchers", "$16,000 GYD"]
-                ]
-            },
-            genshin_impact: {
-                title: "Genshin Impact",
-                subtitle: "Genesis Crystals & Blessing",
-                packages: [
-                    ["Blessing of the Welkin Moon", "$3,000 GYD"],
-                    ["60 Genesis Crystals", "$800 GYD"],
-                    ["300 Genesis Crystals", "$3,200 GYD"],
-                    ["980 Genesis Crystals", "$9,500 GYD"],
-                    ["1980 Genesis Crystals", "$18,500 GYD"]
-                ]
-            },
-            pubg_mobile: {
-                title: "PUBG Mobile",
-                subtitle: "UC Top Up",
-                packages: [
-                    ["60 UC", "$800 GYD"],
-                    ["325 UC", "$3,200 GYD"],
-                    ["660 UC", "$6,200 GYD"],
-                    ["1800 UC", "$15,500 GYD"],
-                    ["3850 UC", "$31,000 GYD"]
-                ]
-            },
-            lord_mobile: {
-                title: "Lord Mobile",
-                subtitle: "Diamonds & Gems",
-                packages: [
-                    ["31 Diamonds", "$700 GYD"],
-                    ["155 Diamonds", "$3,000 GYD"],
-                    ["310 Diamonds", "$5,800 GYD"],
-                    ["775 Diamonds", "$14,000 GYD"]
-                ]
-            },
-            marvel_rivals: {
-                title: "Marvel Rivals",
-                subtitle: "In-Game Currency",
-                packages: [
-                    ["Starter Pack", "$1,500 GYD"],
-                    ["Standard Pack", "$4,000 GYD"],
-                    ["Pro Pack", "$8,500 GYD"]
-                ]
-            },
-            lost_light: {
-                title: "Lost Light",
-                subtitle: "LP Top Up",
-                packages: [
-                    ["60 LP", "$1,000 GYD"],
-                    ["300 LP", "$4,200 GYD"],
-                    ["680 LP", "$9,000 GYD"]
-                ]
-            },
-            once_human: {
-                title: "Once Human",
-                subtitle: "Crystgin Packs",
-                packages: [
-                    ["60 Crystgin", "$800 GYD"],
-                    ["300 Crystgin", "$3,500 GYD"],
-                    ["980 Crystgin", "$10,000 GYD"]
-                ]
-            },
-            monopoly: {
-                title: "Monopoly",
-                subtitle: "Dice & Bundles",
-                packages: [
-                    ["Starter Pack", "$1,500 GYD"],
-                    ["Dice Bundle", "$3,500 GYD"],
-                    ["Mega Bundle", "$7,000 GYD"]
-                ]
-            },
-            ludo_club_cash: {
-                title: "Ludo Club Cash",
-                subtitle: "Coins & Cash Packs",
-                packages: [
-                    ["Small Cash Pack", "$800 GYD"],
-                    ["Medium Cash Pack", "$2,000 GYD"],
-                    ["Large Cash Pack", "$5,000 GYD"]
-                ]
-            },
-            sephora: {
-                title: "Sephora",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$20 USD", "$5,500 GYD"],
-                    ["$25 USD", "$7,000 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$100 USD", "$25,000 GYD"]
-                ]
-            },
-            puma: {
-                title: "Puma",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$5 USD", "$1,500 GYD"],
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$25 USD", "$7,000 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$100 USD", "$25,000 GYD"]
-                ]
-            },
-            itunes: {
-                title: "iTunes / Apple",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$2 USD", "$600 GYD"],
-                    ["$3 USD", "$900 GYD"],
-                    ["$4 USD", "$1,200 GYD"],
-                    ["$5 USD", "$1,500 GYD"],
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$15 USD", "$4,000 GYD"],
-                    ["$20 USD", "$5,500 GYD"],
-                    ["$25 USD", "$7,000 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$60 USD", "$16,000 GYD"],
-                    ["$70 USD", "$19,000 GYD"],
-                    ["$100 USD", "$25,000 GYD"],
-                    ["$150 USD", "$37,500 GYD"],
-                    ["$200 USD", "$50,000 GYD"],
-                    ["$250 USD", "$62,500 GYD"],
-                    ["$300 USD", "$75,000 GYD"],
-                    ["$400 USD", "$100,000 GYD"],
-                    ["$500 USD", "$125,000 GYD"]
-                ]
-            },
-            roblox: {
-                title: "Roblox",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$15 USD", "$4,500 GYD"],
-                    ["$20 USD", "$5,500 GYD"],
-                    ["$25 USD", "$7,500 GYD"],
-                    ["$50 USD", "$13,000 GYD"],
-                    ["$100 USD", "$25,000 GYD"]
-                ]
-            },
-            twitch: {
-                title: "Twitch",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$25 USD", "$7,000 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$100 USD", "$25,000 GYD"]
-                ]
-            },
-            steam: {
-                title: "Steam",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$5 USD", "$1,500 GYD"],
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$20 USD", "$5,500 GYD"],
-                    ["$25 USD", "$7,000 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$75 USD", "$19,500 GYD"],
-                    ["$100 USD", "$27,000 GYD"]
-                ]
-            },
-            rewardble: {
-                title: "Rewardble",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$20 USD", "$5,500 GYD"],
-                    ["$25 USD", "$6,500 GYD"],
-                    ["$30 USD", "$7,500 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$60 USD", "$15,500 GYD"],
-                    ["$100 USD", "$25,000 GYD"]
-                ]
-            },
-            xbox: {
-                title: "Xbox",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$5 USD", "$1,500 GYD"],
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$15 USD", "$4,000 GYD"],
-                    ["$20 USD", "$5,500 GYD"],
-                    ["$25 USD", "$6,500 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$100 USD", "$25,000 GYD"]
-                ]
-            },
-            wizard101: {
-                title: "Wizard 101",
-                subtitle: "KingsIsle Gift Cards",
-                packages: [
-                    ["$5 USD", "$1,500 GYD"],
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$20 USD", "$5,500 GYD"]
-                ]
-            },
-            walmart: {
-                title: "Walmart",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$5 USD", "$1,500 GYD"],
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$25 USD", "$7,000 GYD"],
-                    ["$50 USD", "$13,000 GYD"],
-                    ["$100 USD", "$26,000 GYD"]
-                ]
-            },
-            coc: {
-                title: "Clash of Clans",
-                subtitle: "Gems & Passes",
-                packages: [
-                    ["80 Gems", "$350 GYD"],
-                    ["500 Gems", "$1,500 GYD"],
-                    ["1200 Gems", "$3,000 GYD"],
-                    ["2500 Gems", "$5,500 GYD"],
-                    ["6500 Gems", "$13,000 GYD"],
-                    ["14000 Gems", "$26,000 GYD"],
-                    ["Gold Pass", "$3,000 GYD"]
-                ]
-            },
-            blockman: {
-                title: "BlockMan GO!",
-                subtitle: "GCubes & Subscriptions",
-                packages: [
-                    ["60 GCubes", "$400 GYD"],
-                    ["300 GCubes", "$1,500 GYD"],
-                    ["600 GCubes", "$3,000 GYD"],
-                    ["1650 GCubes", "$7,000 GYD"],
-                    ["3600 GCubes", "$12,500 GYD"],
-                    ["8400 GCubes", "$25,000 GYD"],
-                    ["Subscription Lvl 1", "$1,500 GYD"],
-                    ["Subscription Lvl 2", "$3,000 GYD"],
-                    ["Subscription Lvl 3", "$7,000 GYD"],
-                    ["Jigsaw Puzzle B", "$400 GYD"],
-                    ["Premium Monthly Card", "$1,500 GYD"],
-                    ["Luxury Monthly Card", "$3,000 GYD"],
-                    ["Premium Pass", "$3,000 GYD"],
-                    ["Deluxe Pass", "$4,500 GYD"]
-                ]
-            },
-            codm: {
-                title: "Call Of Duty Mobile",
-                subtitle: "CP Top Up",
-                packages: [
-                    ["80 CP", "$300 GYD"],
-                    ["420 CP", "$1,500 GYD"],
-                    ["880 CP", "$3,000 GYD"],
-                    ["2400 CP", "$7,500 GYD"],
-                    ["5000 CP", "$13,500 GYD"],
-                    ["10800 CP", "$26,000 GYD"]
-                ]
-            },
-            minecraft: {
-                title: "Minecraft",
-                subtitle: "Minecoins & Java Edition",
-                packages: [
-                    ["$9.99 USD Minecoin Pack", "$3,000 GYD"],
-                    ["$19.99 USD Minecoin Pack", "$5,600 GYD"],
-                    ["$26.95 USD Java Global", "$7,500 GYD"]
-                ]
-            },
-            wayfair: {
-                title: "Wayfair",
-                subtitle: "Digital Gift Cards",
-                packages: [
-                    ["$10 USD", "$3,000 GYD"],
-                    ["$25 USD", "$7,000 GYD"],
-                    ["$50 USD", "$12,500 GYD"],
-                    ["$100 USD", "$25,000 GYD"],
-                    ["$200 USD", "$50,000 GYD"]
-                ]
-            }
-        };
+        function openModal(title, packages) {
+            document.getElementById('modal-title').innerText = title;
+            const container = document.getElementById('modal-packages');
+            container.innerHTML = '';
 
-        function openGame(key) {
-            const data = games[key];
-            if (!data) return;
-
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-subtitle').innerText = data.subtitle;
-
-            const list = document.getElementById('package-list');
-            list.innerHTML = '';
-
-            data.packages.forEach(pkg => {
-                const item = document.createElement('div');
-                item.className = 'package-item';
-                item.innerHTML = `
-                    <span class="item-name">${pkg[0]}</span>
-                    <span class="item-price">${pkg[1]}</span>
-                `;
-                list.appendChild(item);
+            packages.forEach(pkg => {
+                const row = document.createElement('div');
+                row.className = 'package-item';
+                row.innerHTML = `<span>${pkg[0]}</span> <span class="price">${pkg[1]}</span>`;
+                container.appendChild(row);
             });
 
             document.getElementById('modal').style.display = 'flex';
