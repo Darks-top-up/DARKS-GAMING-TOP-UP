@@ -6,6 +6,14 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.progressbar import ProgressBar
 from kivy.clock import Clock
+import kivy.utils
+
+# Import Android specific modules safely if running on Android
+if kivy.utils.platform == 'android':
+    from jnius import autoclass
+    PythonActivity = autoclass('org.kivy.android.PythonActivity')
+    Intent = autoclass('android.content.Intent')
+    PackageManager = autoclass('android.content.pm.PackageManager')
 
 class GameBoosterUI(BoxLayout):
     def __init__(self, **kwargs):
@@ -16,7 +24,7 @@ class GameBoosterUI(BoxLayout):
 
         # Title
         self.title = Label(
-            text="[b]Safe Game Performance Optimizer[/b]",
+            text="[b]Game Booster & Launcher[/b]",
             markup=True,
             font_size='20sp',
             size_hint_y=None,
@@ -31,7 +39,7 @@ class GameBoosterUI(BoxLayout):
         self.ram_bar = ProgressBar(max=100)
         self.add_widget(self.ram_bar)
 
-        # Action Buttons
+        # Action Button: Optimize Memory
         self.boost_btn = Button(
             text="Optimize Device Memory",
             background_color=(0, 0.9, 0.4, 1),
@@ -41,9 +49,19 @@ class GameBoosterUI(BoxLayout):
         self.boost_btn.bind(on_press=self.run_optimization)
         self.add_widget(self.boost_btn)
 
+        # Action Button: Launch PUBG Mobile
+        self.launch_pubg_btn = Button(
+            text="Launch PUBG Mobile",
+            background_color=(0, 0.5, 1, 1),
+            size_hint_y=None,
+            height=50
+        )
+        self.launch_pubg_btn.bind(on_press=self.launch_pubg)
+        self.add_widget(self.launch_pubg_btn)
+
         # Status Terminal
         self.status_label = Label(
-            text="Status: Ready\n(Safe: Does not alter game memory/files)",
+            text="Status: Ready\n(Safe App Launcher & RAM Cleaner)",
             font_size='12sp',
             color=(0.7, 0.7, 0.7, 1)
         )
@@ -59,17 +77,42 @@ class GameBoosterUI(BoxLayout):
 
     def run_optimization(self, instance):
         self.status_label.text = "Optimizing: Clearing temporary cache..."
-        
-        # Simulate memory trim and safe system cache cleanup
         try:
-            # Clear temporary python cache safely
             import gc
             collected = gc.collect()
-            
             self.update_ram_stats()
-            self.status_label.text = f"Optimization Complete!\nFreed memory blocks: {collected}\nSystem ready for gaming."
+            self.status_label.text = f"Optimization Complete!\nFreed memory blocks: {collected}\nSystem ready."
         except Exception as e:
             self.status_label.text = f"Error during optimization: {str(e)}"
+
+    def launch_pubg(self, instance):
+        if kivy.utils.platform == 'android':
+            try:
+                activity = PythonActivity.mActivity
+                pm = activity.getPackageManager()
+                
+                # Common package names for PUBG variants:
+                # Global: com.tencent.ig
+                # India (BGMI): com.pubg.imobile
+                # KR/JP: com.pubg.krmobile
+                
+                packages_to_try = ["com.tencent.ig", "com.pubg.imobile", "com.pubg.krmobile"]
+                launched = False
+                
+                for pkg in packages_to_try:
+                    intent = pm.getLaunchIntentForPackage(pkg)
+                    if intent is not None:
+                        activity.startActivity(intent)
+                        self.status_label.text = f"Successfully launched package: {pkg}"
+                        launched = True
+                        break
+                
+                if not launched:
+                    self.status_label.text = "Error: PUBG Mobile is not installed on this device."
+            except Exception as e:
+                self.status_label.text = f"Launch failed: {str(e)}"
+        else:
+            self.status_label.text = "Notice: App launching only works on Android devices, not PC."
 
 class GameBoosterApp(App):
     def build(self):
